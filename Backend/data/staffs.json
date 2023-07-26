@@ -1,0 +1,25 @@
+[
+    {
+        "name" :"Brindha",
+        "phone" : 8987865643,
+        "email":"brindha@maduracollege.edu.in",
+        "password":"brindha@123",
+        "dept" : "IT"
+    },
+    {
+        "name" :"Raji",
+        "phone" : 984654329,
+        
+        "email":"raji@maduracollege.edu.in",
+        "password":"raji@123",
+        "dept" : "CS"
+    },
+    {
+        "name" :"RajaSaravanakumar",
+        "phone" : 9878675645,
+        "email":"raja@maduracollege.edu.in",
+        "password":"raja@123",
+        "dept" : "IT&CS",
+        "position":"HOD"
+    }
+]

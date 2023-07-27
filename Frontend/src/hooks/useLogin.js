@@ -1,20 +1,33 @@
 import  { useState } from 'react'
 import loginValidate from '../utils/loginValidate';
+import loginUser from '../API/loginAPI';
+import {useNavigate } from 'react-router-dom'
+
+//state
+import { useSelector, useDispatch } from 'react-redux';
+import { setError } from '../app/slicers/errorSlicer';
+
+//auth
+import {setItem} from '../Auth/localStorage'
 
 const useLogin = () => {
 
     //initial input state
     const initialInputState = {
-        email: "",
+        username: "",
         password :""
     } 
 
+    const dispatch = useDispatch();
     const [input, setInput] = useState(initialInputState);
-    const [error, setError] = useState({});
     const [load, setLoad] = useState(false);
-    const [select, setSelect] = useState(1);
-    
 
+    //select state 
+    const select = useSelector((state) => state.select.value.select);
+    const error = useSelector((state) => state.error.value);
+
+    //navigation hook
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,36 +39,52 @@ const useLogin = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
 
         const err = loginValidate(input);
 
         //check error exits or not
-        const errExits = Object.keys(err).length > 0 ? true : false;
+        const errExists = Object.keys(err).length > 0 ? true : false;
         
-        if (errExits) {
-             return setError(err);
+        if (errExists) {
+            return dispatch(setError(err))
         }
 
         try {
             setLoad(true)
-            setError({})
-            
+            const result = await loginUser(input, select);
+            console.log(result);
+            //check success or not
+            if (!result.success) {
+                console.log(result);
+                return dispatch(setError({custom:result.message}))
+            }
+            //clear error text
+            dispatch(setError({}))
+
+            //store token in local storage
+            setItem(result.token);
+
+            //navigate to  based on select value 
+            if (select === 1) {
+                navigate('/staff')
+            }
+            else if (select === 2) {
+                navigate('/student')
+            }
+
         }
         catch (e) {
-            console.log(err);
+            console.log(e);
         }
         finally {
-            setTimeout(() => {
-                setLoad(false);
-            },2000)
+            setLoad(false);
         }
-        setInput(initialInputState)
-        console.log(input)
+        setInput(initialInputState);
     }
 
-    return {input,error,load,select,setSelect,handleChange,handleSubmit}
+    return {input,error,load,handleChange,handleSubmit}
 }
 
 export default useLogin

@@ -2,12 +2,12 @@
 
 const loginValidate = (input) => {
     let error = {}
-    const { email, password } = input;
+    const { username, password } = input;
 
-    if (!email.trim()) {
+    if (!username.trim()) {
         error.email="Email is Required!"
     }
-    else if(!email.includes("@maduracollege.edu.in")) {
+    else if(!username.includes("@maduracollege.edu.in")) {
         error.custom="Invalid Crendetials !"
     }
 

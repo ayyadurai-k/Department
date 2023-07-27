@@ -3,7 +3,6 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Login from "./components/Login";
-// import useSelect from "./hooks/useSelect";
 import Staff from "./components/Dashboard/Staff";
 import Student from "./components/Dashboard/Student";
 import Details from "./components/Details";

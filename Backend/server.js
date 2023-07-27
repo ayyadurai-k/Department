@@ -6,7 +6,7 @@ const connectDatabase = require('./config/database');
 const  route  = require('./routes/route');
 const error = require('./middlewares/error');
 const cookieParser = require('cookie-parser');
-
+const cors = require('cors')
 //config file
 dotenv.config({path:path.join(__dirname,"config","config.env")});
 
@@ -19,7 +19,18 @@ connectDatabase();
 
 const app = express(); // create app
 
+const corsOptions = {
+    origin: [
+      'http://localhost:3000',
+      'http://127.0.0.1',
+      'http://example.com',
+      // your origins here
+    ],
+    credentials: true,
+    //exposedHeaders: ['set-cookie'],
+  };
 
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({extended:false})) //get data from url
 app.use(cookieParser())
 app.use(express.json());// get and put json files

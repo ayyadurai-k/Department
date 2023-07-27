@@ -41,7 +41,6 @@ exports.staffAuthCheck=async(req,res,next)=>{
 
     //store userId to req
     req.user=await staffs.findById(data.id);
-
     //calling next Middleware in this "getStudentDashboard" in called
     next();
 }

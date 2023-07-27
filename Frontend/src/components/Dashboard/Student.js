@@ -1,10 +1,13 @@
 
 import { HelmetProvider, Helmet } from "react-helmet-async";
-import React from "react";
+import React, { useEffect } from "react";
 import StudentContent from "./StudentContent";
 import Loader from "../Loader";
-
+import { isAuthenicated } from '../../Auth/localStorage';
+import { useNavigate } from "react-router-dom";
 const Student = () => {
+
+  
   return (
     <>
       <HelmetProvider>
@@ -12,7 +15,7 @@ const Student = () => {
           <title>TMC - Student</title>
         </Helmet>
         {/* <StudentContent/> */}
-        <Loader/>
+        <Loader />
       </HelmetProvider>
     </>
   );

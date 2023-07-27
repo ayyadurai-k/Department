@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelect } from '../app/slicers/selectSlicer';
 
 //images
 import userlogin from '../assets/userlogin.png';
@@ -6,9 +8,15 @@ import useLogin from '../hooks/useLogin';
 
 const Login = () => {
     const [eye, setEye] = useState(false);
-   
+
+    const dispatch = useDispatch();
+    const select = useSelector((state) => state.select.value.select);
     
-    const { input,error,load,select,setSelect,handleChange,handleSubmit } = useLogin();
+    const handleSelect = (select) => {
+        dispatch(setSelect({ select }));
+    }
+
+    const { input,error,load,handleChange,handleSubmit } = useLogin();
     return (
         <>
             <main className='m-5 p-5 flex mt-20 rounded-2xl bg-[#0cba94] font-[Poppins]'>
@@ -19,11 +27,11 @@ const Login = () => {
                     <form className=' h-full'>
                         <h1 className='text-center font-semibold text-3xl mt-2'>Login</h1>
                         <div className='flex mt-5 justify-center bg-white w-4/5 lg:w-1/2 mx-auto rounded-lg shadow-lg  '>
-                            <div onClick={()=>setSelect(1)} className={`w-1/2 h-full px-3 py-2 rounded-l-lg  hover:cursor-pointer ${select===1 && 'bg-blue-500'}`} >
+                            <div onClick={()=>handleSelect(1)} className={`w-1/2 h-full px-3 py-2 rounded-l-lg  hover:cursor-pointer ${select===1 && 'bg-blue-500'}`} >
                                 <h3 className={`font-bold text-center ${select===1 && 'text-white'}`}>Staff</h3>
 
                             </div>
-                            <div onClick={()=>setSelect(2)} className={`w-1/2 h-full px-3 py-2 rounded-r-lg  hover:cursor-pointer ${select===2 && 'bg-blue-500'}`} >
+                            <div onClick={()=>handleSelect(2)} className={`w-1/2 h-full px-3 py-2 rounded-r-lg  hover:cursor-pointer ${select===2 && 'bg-blue-500'}`} >
                                 <h3 className={`font-bold text-center ${select===2 && 'text-white'}`}>Student</h3>
 
                             </div>
@@ -37,7 +45,7 @@ const Login = () => {
                             </div>
                             <div className='w-full '>
                                 <label htmlFor='email' className='text-gray-500'>Enter Your Email </label>
-                                <input type="email" id='email' name='email' value={input.email} onChange={handleChange} className='block border-b-2 border-gray-400 outline-none w-full mt-1 p-1 '></input>
+                                <input type="email" id='email' name='username' value={input.username} onChange={handleChange} className='block border-b-2 border-gray-400 outline-none w-full mt-1 p-1 '></input>
 
                             </div>
                         </div>

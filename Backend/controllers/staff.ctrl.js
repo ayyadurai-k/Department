@@ -24,7 +24,7 @@ const { catchAsyncError } = require("../middlewares/catchAsyncError");
 
 exports.staffLoginPost = catchAsyncError(async (req, res, next) => {
   const { username, password } = req.body;
-
+  console.log("called");
   if (!username || !password) {
     return next(new ErrorHandler("All fields are must required !", 400));
   }
@@ -51,8 +51,7 @@ exports.staffLoginPost = catchAsyncError(async (req, res, next) => {
   //send response
   res.status(200).json({
     success: true,
-    message: "Token is generated",
-    token: token,
+    token: token
   });
 });
 

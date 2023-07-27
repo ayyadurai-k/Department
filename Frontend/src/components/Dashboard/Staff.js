@@ -10,8 +10,8 @@ const Staff = () => {
             <Helmet>
                 <title>TMC - Staff</title>
             </Helmet>
-                {/* <StaffContent /> */}
-                <Loader/>
+                <StaffContent />
+                {/* <Loader/> */}
             </HelmetProvider>
         </>
     )

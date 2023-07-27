@@ -3,7 +3,6 @@ const { generateToken } = require("../helpers/jwtHelpers");
 const { catchAsyncError } = require("../middlewares/catchAsyncError");
 const students = require("../models/student.mdl");
 const ErrorHandler = require("../utils/ErrorHandler");
-const ObjectId = require("mongoose").Types.ObjectId;
 const studentAttendance =
    require("../models/attendance.mdl").studentAttendanceModel;
 
@@ -39,19 +38,12 @@ exports.createNewStudent = catchAsyncError(async (req, res, next) => {
    });
 });
 
-// for getting login page
-//url: student/login(get)
-exports.studentLoginGet = (req, res, next) => {
-   res.status(200).json({
-      currentPage: "Student Login page",
-   });
-};
+
 
 //for posting student username and password
 //url: student/login(post)
 exports.studentLoginPost = catchAsyncError(async (req, res, next) => {
    const { username, password } = req.body;
-
    if (!username || !password) {
       return next(new ErrorHandler("All fields are must required", 403));
    }
@@ -72,13 +64,14 @@ exports.studentLoginPost = catchAsyncError(async (req, res, next) => {
    //create jwt token using id and collection name
    const token = await generateToken(student._id, students.collection.name);
 
-   //send cookies via response and store
-   res.cookie("StudentJwtToken", token, { httpOnly: true });
-   res.cookie("collection", students.collection.name, { httpOnly: true });
+   //store token using cookie
+  res.cookie("StudentJwtToken", token, { httpOnly: true });
+  res.cookie("collection", student.collection.name, { httpOnly: true });
+
 
    res.status(200).json({
       success: true,
-      data: student,
+      token
    });
    //  return res.redirect('/student/dashboard')
 });
@@ -87,6 +80,7 @@ exports.studentLoginPost = catchAsyncError(async (req, res, next) => {
 exports.getStudentDashboard = async (req, res, next) => {
    //get student detail via req.userId
    const student = req.user;
+   console.log("called")
 
    res.status(200).json({
       success: true,

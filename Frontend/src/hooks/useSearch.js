@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { searchStudent } from '../API/searchAPI';
 
 const useSearch = () => {
     const [input, setInput] = useState('');
     const [load, setLoad] = useState(false);
     const [searchResult,setSearchResult]=useState(null)
-    const [error,setError]=useState(null)
+    const [error, setError] = useState(null)
+    
     const handleChange = (e) => {
         const { value } = e.target;
 
@@ -13,7 +15,7 @@ const useSearch = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         if (!input.trim()) {
             return setError("RegNo is Required")
         }
@@ -27,11 +29,17 @@ const useSearch = () => {
         setError(null)
         try {
             setLoad(true);
-            setSearchResult({})
-             input.toUpperCase();
+            const {data} = ( await searchStudent(input.toUpperCase())).data;
+            console.log(data);
+            setSearchResult({
+                name: data.name,
+                email: data.email,
+                phone : data.phone
+            })
         }
         catch (err) {
-            console.log(err);
+    
+            setSearchResult(null);
         }
         finally{
             setTimeout(() => {

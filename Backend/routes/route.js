@@ -1,6 +1,6 @@
 const express = require('express');
 const { studentLoginPost,getStudentDashboard, studentLogout, getStudentsAttendanceReport } = require('../controllers/student.ctrl');
-const { staffLoginPost, getStaffDashboard ,staffLogout, getAttendancePage, postAttendanceData, selfAttendance, getOneClass, getStaffAttendanceReport, getOneClassAttendanceReport} = require('../controllers/staff.ctrl');
+const { staffLoginPost, getStaffDashboard ,staffLogout, getAttendancePage, postAttendanceData, selfAttendance, getOneClass, getStaffAttendanceReport, getOneClassAttendanceReport, getOneStudent} = require('../controllers/staff.ctrl');
 const { studentAuthCheck ,staffAuthCheck} = require('../middlewares/AuthCheck');
 const route = express.Router();
 
@@ -39,5 +39,8 @@ route.get('/staff/self-attendance/report/:month', staffAuthCheck, getStaffAttend
 //get student attendance report
 route.get('/student/attendance/report/:month',studentAuthCheck,getStudentsAttendanceReport);
 
+
+// get one student for search
+route.get('/staff/search/student/:regno',staffAuthCheck,getOneStudent)
 
 module.exports=route;

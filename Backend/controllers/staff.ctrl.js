@@ -292,6 +292,20 @@ exports.getStaffAttendanceReport = catchAsyncError(async (req, res, next) => {
   });
 });
 
+// url : /staff/search/student/:regno
+exports.getOneStudent = catchAsyncError(async (req, res, next) => { 
+    const {regno} = req.params;
+
+  const student = await students.findOne({ regno }).select('-password');
+  if (!student) {
+     return next(new ErrorHandler("No Data Found ! ",400))
+  }
+
+  res.status(200).json({
+    success: true,
+    data : student
+  })
+})
 
 // url : /staff/logout
 exports.staffLogout = catchAsyncError(async (req, res, next) => {

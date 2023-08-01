@@ -3,14 +3,15 @@ import axios from 'axios';
 
 axios.defaults.baseURL="http://localhost:3001"
 
-const logoutAPI = async(select) => {
-    if (select === 1) {
+
+const logoutAPI = async (user) => {
+    console.log(user);
+    if (user.position) {
         await axios.get('/staff/logout', { withCredentials: true });
     }
-    if (select === 2) {
+    if (!user.position) {
         await axios.get('/student/logout', { withCredentials: true });
     }
-
 }
 
 export default logoutAPI

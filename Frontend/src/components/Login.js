@@ -24,7 +24,7 @@ const Login = () => {
     const { input,error,load,handleChange,handleSubmit } = useLogin();
     return (
         <>
-            <main className='m-5 p-5 flex mt-20 rounded-2xl bg-[#0cba94] font-[Poppins]'>
+            <main className='m-5 p-5 flex mt-3 rounded-2xl bg-[#0cba94] font-[Poppins]'>
                 <div className='lg:w-1/2 hidden lg:block '>
                     <img src={userlogin} alt='User Login' className='w-3/4 mx-auto'></img>
                 </div>
@@ -66,9 +66,9 @@ const Login = () => {
                             <div className='w-full flex '>
                                 <div className='w-full'>
                                     <label htmlFor='password' className='text-gray-500'>Enter Your Password </label>
-                                    <input type={`${eye ? "text" : "password"}`} id='password' name='password'value={input.password} onChange={handleChange} className='block border-b-2 border-gray-400 outline-none w-full mt-1 p-1 z-20  '></input>
+                                    <input type={`${eye ? "text" : "password"}`} id='password' name='password'value={input.password} onChange={handleChange} className='block  border-b-2 border-gray-400 outline-none w-full mt-1 p-1 z-20  '></input>
                                 </div>
-                                <div className='hover:cursor-pointer' onClick={()=>setEye(!eye)}>
+                                <div className='hover:cursor-pointer ml-2' onClick={()=>setEye(!eye)}>
                                 {!eye ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6   ml-auto mt-8 mr-2 z-1 ">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

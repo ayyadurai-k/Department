@@ -24,7 +24,7 @@ const Profile = () => {
   return (
     <>
     <section className=' mt-5  pb-10 '>
-        <h1 className='flex'><Link to={'/login'} onClick={() => { logoutAPI(select) }} className='bg-red-500  text-white font-bold px-3 py-2 rounded-lg ml-auto mr-5 hover:bg-red-700' >Logout</Link></h1>
+        <h1 className='flex'><Link to={'/login'} onClick={() => { logoutAPI(user.data) }} className='bg-red-500  text-white font-bold px-3 py-2 rounded-lg ml-auto mr-5 hover:bg-red-700' >Logout</Link></h1>
 
         <div className='bg-purple-400	 rounded-2xl  flex w-11/12 mx-auto mt-3'>
           <div className='w-full   lg:w-1/2 flex p-2'>

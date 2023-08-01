@@ -1,14 +1,80 @@
 [
     {
+        "name" :"Aarthy",
+        "email": "2021itc001@maduracollege.edu.in",
+        "phone":3456789876,
+        "gender":"Female",
+        "regno" : "2021ITC001",
+        "password": "aaarthy@123",
+        "DOB": "02-03-2003",
+        "dept":"IT",
+        "year":3        
+    },
+    {
+        "name" :"Alaguraja",
+        "email": "2021itc002@maduracollege.edu.in",
+        "phone":1234567898,
+        "gender":"Male",
+        "regno" : "2021ITC002",
+        "password": "alaguraja@123",
+        "DOB": "07-08-2003",
+        "dept":"IT",
+        "year":3        
+    },
+    {
+        "name" :"Angalaehwari",
+        "email": "2021itc003@maduracollege.edu.in",
+        "phone":5678564532,
+        "gender":"Female",
+        "regno" : "2021ITC003",
+        "password": "angal@123",
+        "DOB": "01-03-2003",
+        "dept":"IT",
+        "year":3        
+    },
+    {
+        "name" :"Ashwin",
+        "email": "2021itc004@maduracollege.edu.in",
+        "phone":4567875645,
+        "gender":"Male",
+        "regno" : "2021ITC004",
+        "password": "ashwin@123",
+        "DOB": "09-04-2004",
+        "dept":"IT",
+        "year":3        
+    },
+    {
         "name" : "Ayyadurai K",
         "email": "2021itc005@maduracollege.edu.in",
         "phone":6383570296,
-        "gender":"male",
+        "gender":"Male",
         "regno" : "2021ITC005",
-        "password": "01-06-2004",
+        "password": "ayyadurai@123",
         "DOB": "01-06-2004",
         "dept":"IT",
         "year":3        
+    },
+    {
+        "name" :"Bala",
+        "email": "2021itc006@maduracollege.edu.in",
+        "phone":6789345678,
+        "gender":"Male",
+        "regno" : "2021ITC006",
+        "password": "bala@123",
+        "DOB": "07-05-2003",
+        "dept":"IT",
+        "year":3        
+    },
+    {
+        "name" : "Gayathri KM",
+        "email": "2021itc007@maduracollege.edu.in",
+        "phone":8098911879,
+        "regno" : "2021ITC007",
+        "password": "gayathri@123",
+        "DOB": "02-11-2003",
+        "gender":"Female",
+        "dept":"IT",
+        "year":3    
     },
     {
         "name" : "Gowtham S",
@@ -16,86 +82,183 @@
         "phone":8610804569,
         "regno" : "2021ITC008",
         "password": "03-02-2004",
-        "DOB": "03-02-2004",
+        "DOB": "gowtham@123",
         "gender":"Male",
         "dept":"IT",
         "year":3    
     },
     {
-        "name" : "Madhanraj JR",
-        "email": "2021itc0016@maduracollege.edu.in",
-        "phone":8825893275,
-        "regno" : "2021ITC016",
-        "password": "10-05-2004",
-        "DOB": "10-05-2004",
+        "name" : "Hari",
+        "email": "2021itc009@maduracollege.edu.in",
+        "phone":3456342312,
+        "regno" : "2021ITC009",
+        "password": "hari@123",
+        "DOB": "07-11-2004",
         "gender":"Male",
         "dept":"IT",
         "year":3    
     },
     {
-        "name" : "Gayathri KM",
-        "email": "2021itc007@maduracollege.edu.in",
-        "phone":8098911879,
-        "regno" : "2021ITC007",
-        "password": "02-11-2003",
-        "DOB": "02-11-2003",
+        "name" : "Harini B",
+        "email": "2021itc010@maduracollege.edu.in",
+        "phone":4565342321,
+        "regno" : "2021ITC010",
+        "password": "harini@123",
+        "DOB": "10-9-2003",
         "gender":"Female",
         "dept":"IT",
         "year":3    
     },
+
+
+
+
     {
-        "name" : "Mani P",
+        "name" : "Janankiraman",
         "email": "2021csc101@maduracollege.edu.in",
-        "phone":7898564323,
+        "phone":7867564532,
         "regno" : "2021CSC101",
-        "password": "01-02-2004",
+        "password": "janaki@123",
+        "DOB": "12-09-2003",
+        "gender":"Male",
         "dept":"CS",
         "year":3    
     },
     {
-        "name" : "Kumar P",
+        "name" : "Jeyapraksh",
         "email": "2021csc102@maduracollege.edu.in",
-        "phone":  6345678998,
+        "phone":8978675654,
         "regno" : "2021CSC102",
-        "password": "02-02-2004",
+        "password": "jeyaprakash@123",
+        "DOB": "11-10-2003",
+        "gender":"Male",
         "dept":"CS",
         "year":3    
     },
     {
-        "name" : "Vinoth P",
-        "email": "2022csc101@maduracollege.edu.in",
-        "phone":  6787984534,
-        "regno" : "2022CSC101",
-        "password": "04-08-2004",
+        "name" : "Kalai",
+        "email": "2021csc103@maduracollege.edu.in",
+        "phone":7876565432,
+        "regno" : "2021CSC103",
+        "password": "jeyaprakash@123",
+        "DOB": "11-10-2003",
+        "gender":"Male",
         "dept":"CS",
-        "year":2
+        "year":3    
     },
     {
-        "name" : "Pandi L",
-        "email": "2022csc102@maduracollege.edu.in",
-        "phone":  6376568970,
-        "regno" : "2022CSC102",
-        "password": "03-04-2004",
+        "name" : "Kavipriya",
+        "email": "2021csc104@maduracollege.edu.in",
+        "phone":6765453212,
+        "regno" : "2021CSC104",
+        "password": "kavipriya@123",
+        "DOB": "23-10-2003",
+        "gender":"Female",
         "dept":"CS",
-        "year":2  
+        "year":3    
     },
     {
-        "name" : "Padmesh L",
+        "name" : "Lakshmi Prabha",
+        "email": "2021csc105@maduracollege.edu.in",
+        "phone":5667789765,
+        "regno" : "2021CSC105",
+        "password": "lakshmi@123",
+        "DOB": "24-12-2003",
+        "gender":"Female",
+        "dept":"CS",
+        "year":3    
+    },
+    {
+        "name" : "Madhanraj JR",
+        "email": "2021csc106@maduracollege.edu.in",
+        "phone":8825893275,
+        "regno" : "2021CSC106",
+        "password": "madhanraj@123",
+        "DOB": "10-05-2004",
+        "gender":"Male",
+        "dept":"CS",
+        "year":3    
+    },
+    {
+        "name" : "Mani J",
+        "email": "2021csc107@maduracollege.edu.in",
+        "phone":7898675634,
+        "regno" : "2021CSC107",
+        "password": "mani@123",
+        "DOB": "31-05-2003",
+        "gender":"Male",
+        "dept":"CS",
+        "year":3    
+    },
+    {
+        "name" : "Mari",
+        "email": "2021csc108@maduracollege.edu.in",
+        "phone":6756453423,
+        "regno" : "2021CSC108",
+        "password": "mari@123",
+        "DOB": "27-09-2003",
+        "gender":"Male",
+        "dept":"CS",
+        "year":3    
+    },
+    {
+        "name" : "Mustafa",
+        "email": "2021csc109@maduracollege.edu.in",
+        "phone":8765434568,
+        "regno" : "2021CSC109",
+        "password": "mustafa@123",
+        "DOB": "21-09-2003",
+        "gender":"Male",
+        "dept":"CS",
+        "year":3    
+    },
+    {
+        "name" : "Mohanraja",
+        "email": "2021csc110@maduracollege.edu.in",
+        "phone":6787985643,
+        "regno" : "2021CSC110",
+        "password": "mohanraja@123",
+        "DOB": "12-12-2003",
+        "gender":"Male",
+        "dept":"CS",
+        "year":3    
+    },
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "name" : "Mutheeswaran",
         "email": "2022itc001@maduracollege.edu.in",
-        "phone":  6545677689,
+        "phone":7898765432,
         "regno" : "2022ITC001",
-        "password": "12-12-2004",
+        "password": "mutheeshwaran@123",
+        "DOB": "14-12-2003",
+        "gender":"Male",
         "dept":"IT",
-        "year":2  
-    },
-    {
-        "name" : "Selvi R",
-        "email": "2022itc002@maduracollege.edu.in",
-        "phone":  9878675645,
-        "regno" : "2022ITC002",
-        "password": "15-06-2004",
-        "dept":"IT",
-        "year":2  
+        "year":2    
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 ]

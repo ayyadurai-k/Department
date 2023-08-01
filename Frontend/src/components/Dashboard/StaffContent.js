@@ -119,21 +119,21 @@ const StaffContent = () => {
                     <div className=" ">
                       <div className="flex font-bold">
                         <label>Name : </label>
-                        <p className="ml-2">Ayyadurai</p>
+                        <p className="ml-2">{searchHook.searchResult.name}</p>
                       </div>
                       <div className="flex font-bold">
-                        <label>Reg No : </label>
-                        <p className="ml-2">2021ITC005</p>
+                        <label>Email : </label>
+                        <p className="ml-2">{searchHook.searchResult.email}</p>
                       </div>
                       <div className="flex font-bold">
-                        <label>Dept : </label>
-                        <p className="ml-2">IT</p>
+                        <label>Phone : </label>
+                        <p className="ml-2">{searchHook.searchResult.phone}</p>
                       </div>
                     </div>
                   )}
-                  {searchHook.searchResult === null && (
+                  {searchHook.searchResult === null && !searchHook.load  && (
                     <div className="m-5  ">
-                      <h1 className="text-center text-gray-700 font-bold text-xl">
+                       <h1 className="text-center text-gray-700 font-bold text-xl">
                         No Data Found
                       </h1>
                     </div>
@@ -157,7 +157,7 @@ const StaffContent = () => {
                             fill="currentFill"
                           />
                         </svg>
-                        <span class="sr-only">Loading...</span>
+                        <span className="sr-only">Loading...</span>
                       </div>
                     </div>
                   )}

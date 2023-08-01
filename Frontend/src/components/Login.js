@@ -7,13 +7,18 @@ import userlogin from '../assets/userlogin.png';
 import useLogin from '../hooks/useLogin';
 
 const Login = () => {
-    const [eye, setEye] = useState(false);
 
     const dispatch = useDispatch();
+
+    const [eye, setEye] = useState(false);
+
+    
     const select = useSelector((state) => state.select.value.select);
     
     const handleSelect = (select) => {
+
         dispatch(setSelect({ select }));
+        
     }
 
     const { input,error,load,handleChange,handleSubmit } = useLogin();

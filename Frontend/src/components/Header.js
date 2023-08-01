@@ -1,13 +1,21 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import {useEffect, useState} from "react";
+import { Link, NavLink } from 'react-router-dom'
 //images
 import logo from '../assets/logo.png';
-import useSelect from "../hooks/useSelect";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSelect } from "../app/slicers/navSlicer";
 
 
 const Header = () => {
     const [open, setOpen] = useState(false);
-    const { select, setSelect } = useSelect();
+    
+    const select = useSelector((state)=>state.navbar)
+   
+    const dispatch = useDispatch();
+
+    
+    
+    
 
     //handle toggle event
     function toggleMenu() {
@@ -31,17 +39,17 @@ const Header = () => {
                         {!open && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-amber-400 ">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
                         </svg>}
-                        {open && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-400">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        {open && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-amber-400">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>}
                     </button>
                 </div>
                 <ul className="md:flex my-auto hidden ">
-                    <li className="" onClick={()=>{setSelect(1)}}><Link to={'/'} className={`link ${select===1 && 'text-white '}`}>Home</Link></li>
-                    <li className="" onClick={()=>{setSelect(2)}}><Link to={'/staff'} className={`link ${select===2 && 'text-white '}`}>Staff</Link></li>
-                    <li className="" onClick={()=>{setSelect(3)}}><Link to={'/student'} className={`link ${select===3 && 'text-white '}`}>Student</Link></li>
-                    <li className="" onClick={()=>{setSelect(4)}}><Link to={'/contact'} className={`link ${select===4 && 'text-white '}`}>Contact</Link></li>
-                    <li className="" onClick={()=>{setSelect(5)}}><Link to={'/about'} className={`link ${select===5 && 'text-white '}`}>About</Link></li>
+                    <li className=""><NavLink to={'/'} className={`link active:text-white '}`}>Home</NavLink></li>
+                    <li className=""><NavLink to={'/staff'} className={`link active:text-white '}`}>Staff</NavLink></li>
+                    <li className=""><NavLink to={'/student'} className={`link active:text-white '}`}>Student</NavLink></li>
+                    <li className=""><NavLink to={'/contact'} className={`link active:text-white '}`}>Contact</NavLink></li>
+                    <li className=""><NavLink to={'/about'} className={`link active:text-white '}`}>About</NavLink></li>
                 </ul>
             </div>
             {open && <div className="md:hidden ">

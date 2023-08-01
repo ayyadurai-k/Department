@@ -1,5 +1,4 @@
 
-
 import axios from 'axios';
 // import useLogin from '../hooks/useLogin';
 
@@ -14,7 +13,6 @@ const loginUser = async (data,select) => {
         }).catch(err => {
             result = err.response.data;
         })
-        console.log(result);
     }
     if (select === 2) {
         await axios.post('/student/login', data,{withCredentials:true}).then((res) => {

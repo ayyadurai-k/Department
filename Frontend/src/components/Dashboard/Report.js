@@ -6,7 +6,6 @@ const Report = () => {
     // for month options
     const [month, setMonth] = useState([]);
     useEffect(() => {
-        console.log('called');
         setMonth(generateMonthArray())
     }, [])
     

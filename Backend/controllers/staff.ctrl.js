@@ -73,11 +73,14 @@ exports.getStaffDashboard = catchAsyncError(async (req, res, next) => {
     updatedAt: currentDate,
   });
 
+  console.log(updatedOrNot);
+  
   res.status(200).json({
     success: true,
     data: staff,
-    getin : updatedOrNot ? true : false
+    getIn : updatedOrNot ? true : false
   });
+  
   
 });
 
@@ -279,7 +282,7 @@ exports.getStaffAttendanceReport = catchAsyncError(async (req, res, next) => {
 });
 
 
-// url : /student/logout
+// url : /staff/logout
 exports.staffLogout = catchAsyncError(async (req, res, next) => {
   //clear cookie via set null
   res.cookie("StaffJwtToken", '', { httpOnly: true });

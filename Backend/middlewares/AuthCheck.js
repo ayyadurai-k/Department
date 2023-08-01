@@ -10,7 +10,6 @@ exports.staffAuthCheck=async(req,res,next)=>{
  
     const jwtToken = req.cookies.StaffJwtToken;
   
-    console.log('called',jwtToken);
     //check token exits or not
   if (!jwtToken) {
       return res.status(400).json({

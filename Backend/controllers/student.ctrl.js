@@ -1,3 +1,4 @@
+const { getYear } = require("../helpers/dateTimeHelper");
 const { comparePassword, hashPassword } = require("../helpers/hashHelper");
 const { generateToken } = require("../helpers/jwtHelpers");
 const { catchAsyncError } = require("../middlewares/catchAsyncError");
@@ -90,8 +91,9 @@ exports.getStudentDashboard = async (req, res, next) => {
 };
 
 exports.getStudentsAttendanceReport = async (req, res, next) => {
-   const { month, year } = req.params;
+   const { month } = req.params;
    const regno = req.user.regno;
+   const year = getYear();
    if (!regno || !month || !year) {
       return next(
          new ErrorHandler(
@@ -100,7 +102,6 @@ exports.getStudentsAttendanceReport = async (req, res, next) => {
          )
       );
    }
-
    const studentAttendanceReport = await studentAttendance.find({
       regno,
       month,

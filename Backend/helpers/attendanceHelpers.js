@@ -92,7 +92,6 @@ const automaticStaffAttendance = () => {
 };
 
 //convert boolean into counting
-
 const convertAttendance = (reports) => {
   const result = {};
 

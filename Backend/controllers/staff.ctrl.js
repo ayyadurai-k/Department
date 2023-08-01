@@ -1,6 +1,6 @@
 const { hashPassword, comparePassword } = require("../helpers/hashHelper");
 const { generateToken } = require("../helpers/jwtHelpers");
-const { getDate } = require("../helpers/dateTimeHelper");
+const { getDate, getYear } = require("../helpers/dateTimeHelper");
 const {
   getStudents,
   giveStudentAttendance,
@@ -24,7 +24,6 @@ const { catchAsyncError } = require("../middlewares/catchAsyncError");
 
 exports.staffLoginPost = catchAsyncError(async (req, res, next) => {
   const { username, password } = req.body;
-  console.log("called");
   if (!username || !password) {
     return next(new ErrorHandler("All fields are must required !", 400));
   }
@@ -73,15 +72,15 @@ exports.getStaffDashboard = catchAsyncError(async (req, res, next) => {
     updatedAt: currentDate,
   });
 
-  console.log(updatedOrNot);
   
+
   res.status(200).json({
     success: true,
     data: staff,
-    getIn : updatedOrNot ? true : false
+    getIn: updatedOrNot ? true : false
   });
-  
-  
+
+
 });
 
 // url : /staff/attendance (get)
@@ -226,7 +225,7 @@ exports.getOneClassAttendanceReport = catchAsyncError(async (req, res, next) => 
   const { dept, year, selectedMonth, selectedYear } = req.params;
 
   if (!dept && !year && !selectedMonth && !selectedYear) {
-        next(new ErrorHandler("All Fields Are Must Required",400))
+    next(new ErrorHandler("All Fields Are Must Required", 400))
   }
 
   const rawReports = await studentAttendance.find({
@@ -236,8 +235,8 @@ exports.getOneClassAttendanceReport = catchAsyncError(async (req, res, next) => 
     currentYear: selectedYear,
   })
 
-  if (rawReports.length===0) {
-    next(new ErrorHandler("No Data Found ",400))
+  if (rawReports.length === 0) {
+    next(new ErrorHandler("No Data Found ", 400))
 
   }
 
@@ -252,7 +251,9 @@ exports.getOneClassAttendanceReport = catchAsyncError(async (req, res, next) => 
 
 // url: /staff/self-attendance/report/:email/:month
 exports.getStaffAttendanceReport = catchAsyncError(async (req, res, next) => {
-  const { month, year } = req.params;
+  
+  const { month } = req.params;
+  const year = getYear();
   const email = req.user.email;
 
   if (!email || !month || !year) {
@@ -274,10 +275,20 @@ exports.getStaffAttendanceReport = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler("Attendance Reports Not Found !", 400));
   }
 
+
+  let Present = 0, Absent = 0;
+
+  staffAttendanceReport.forEach(({ present }) => {
+    present ? Present++ : Absent++;
+  })
+
   res.status(200).json({
     success: true,
     currentPage: "Staff Attendance Report",
-    staffAttendanceReport,
+    data: {
+      present: Present,
+      absent: Absent
+    }
   });
 });
 

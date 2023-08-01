@@ -6,9 +6,12 @@ const instance = axios.create({
     baseURL:'http://localhost:3001'    
 })
 
-const selfAttendance = async() => {
+export const selfAttendance = async() => {
     await instance.post('/staff/self-attendance');
     
 }
 
-export default selfAttendance;
+export const selfAttendanceReport = async (month,url) => {
+    return await instance.get(`${url}${month}`)
+}
+

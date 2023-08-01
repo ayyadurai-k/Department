@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import logoutAPI from '../../API/logoutAPI';
 //images
 import profile from '../../assets/profile.png';
-import selfAttendance from '../../API/selfAttendanceAPI';
+import {selfAttendance} from '../../API/selfAttendanceAPI';
 
 const Profile = () => {
   const select = useSelector((state) => state.select.value.select);

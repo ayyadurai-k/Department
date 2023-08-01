@@ -34,10 +34,10 @@ route.get('/staff/class/:dept/:year', staffAuthCheck, getOneClass);
 route.get('/staff/students/details/:dept/:year/:selectedMonth/:selectedYear', staffAuthCheck, getOneClassAttendanceReport);
 
 // get staff self attendance report
-route.get('/staff/self-attendance/report/:month/:year', staffAuthCheck, getStaffAttendanceReport);
+route.get('/staff/self-attendance/report/:month', staffAuthCheck, getStaffAttendanceReport);
 
 //get student attendance report
-route.get('/student/attendance/report/:month/:year',studentAuthCheck,getStudentsAttendanceReport);
+route.get('/student/attendance/report/:month',studentAuthCheck,getStudentsAttendanceReport);
 
 
 module.exports=route;

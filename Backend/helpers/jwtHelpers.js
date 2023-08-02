@@ -8,7 +8,7 @@ exports.generateToken=async(id,collection)=>{
     },
     process.env.JWT_SECRET_KEY,
     {
-        expiresIn:"2h"
+        expiresIn:"7d"
     }
     )
     return token;

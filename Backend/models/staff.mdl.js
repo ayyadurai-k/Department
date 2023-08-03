@@ -27,14 +27,18 @@ var staffSchema = new mongoose.Schema({
         type:String,
         required:[true,"Please enter password"],
     },
-    dept:{
+    gender:{
         type :String,
-        required:[true,"Please enter  department"],
-        enum:["IT","CS","IT&CS"]
+        required:[true,"Please enter  Gender"]
+        
+    },
+    DOB:{
+        type :String,
+        required:[true,"Please enter  DOB"],
     },
     position : {
         type : String,
-        default:"Staff"
+        default:"STAFF"
     }
 });
 

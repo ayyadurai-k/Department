@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const useDetails = () => {
 
@@ -12,10 +13,10 @@ const useDetails = () => {
     const [radio, setRadio] = useState({select:null});
     const [input, setInput] = useState(initialState);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(e.target)
         setInput((preInput) => {
             return {
                 ...preInput,
@@ -35,6 +36,13 @@ const useDetails = () => {
             if (input.dept==='null' || input.year==='null' ) {
                 return setError('All Fields Is Must Required');
             }
+        }
+
+        if (radio.select==="SD") {
+            navigate(`/details/${input.dept}/${input.year}`)
+        }
+        if(radio.select==="AD") {
+            navigate(`/attendance-details/${input.dept}/${input.year}/${input.month}`)
         }
         setError(null)
         console.log(input);

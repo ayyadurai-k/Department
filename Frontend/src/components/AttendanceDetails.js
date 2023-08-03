@@ -1,57 +1,15 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import students from '../data/students.json'
 import Loader from './Loader'
-import { useEffect, useState } from 'react';
-import checkInput from '../utils/checkInput';
-import { getStudents } from '../API/studentAPI';
 
-const Details = () => {
-
-    const { dept, year } = useParams();
-
+const AttendanceDetails = () => {
     const navigate = useNavigate();
-
-    const [students, setStudents] = useState([]);
-    const [error, setError] = useState(false);
-    const [loading, setLodaing] = useState(false);
-
-    useEffect(() => {
-        //first check Input
-        const checkResult = checkInput(dept.toUpperCase(), year);
-
-
-
-        // if error occurs update error state
-        if (!checkResult) {
-            return setError(true);
-        }
-
-        async function api() {
-            //call api
-            try {
-                setLodaing(true)
-                const result = await getStudents(dept, year)
-                console.log(result);
-                setStudents(result.data.studentsData)
-            }
-            catch (error) {
-                 setError(true);
-            }
-            finally {
-                setLodaing(false)
-            }
-            
-        }
-        api();
-    },[])
-
     
-
     return (
         <>
-            {loading && <Loader />}
-            {!error && !loading && <main className="bg-gray-300  w-full p-2 h-screen mb-10">
-                <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5 ">
+            {/* <Loader /> */}
+            <main className="bg-gray-300  w-full p-2 h-screen">
+                <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5">
                     <h1 className="font-bold text-black text-2xl center">Class Name</h1>
                     <div className='hidden md:block'>
                         <table className="w-full mt-5 ">
@@ -59,8 +17,8 @@ const Details = () => {
                                 <tr className="">
                                     <th className="p-3">RegNo</th>
                                     <th className="p-3">Name</th>
-                                    <th className="p-3">DOB</th>
-                                    <th className="p-3">Gender</th>
+                                    <th className="p-3">Present</th>
+                                    <th className="p-3">Absent</th>
 
                                 </tr>
                             </thead>
@@ -70,7 +28,6 @@ const Details = () => {
                                     return (
                                         <tr className={`${sNo % 2 === 0 && 'bg-blue-300'} `} key={student.regno}>
                                             <td className='p-2 '>{student.regno}</td>
-                                            <td className='p-2 '>{student.name}</td>
                                             <td className='p-2 '>{student.DOB}</td>
                                             <td className='p-2 '>{student.gender}</td>
                                         </tr>
@@ -93,8 +50,8 @@ const Details = () => {
                                             <div className='w-full md:w-3/4 flex p-5'>
                                                 <div className='my-auto '>
                                                     <h1 className='font-bold text-xl'>{student.name}</h1>
-                                                    <h1 className='font-bold text-gray-700'>{student.DOB}</h1>
-                                                    <h1 className='font-bold text-gray-700'>{student.gender}</h1>
+                                                    <h1 className='font-bold text-gray-700'><span>Present : </span>{student.DOB}</h1>
+                                                    <h1 className='font-bold text-gray-700'><span>Absent : </span>{student.gender}</h1>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,9 +64,8 @@ const Details = () => {
 
                     </div>
                 </section>
-            </main>}
-
-            {error && !loading && <main className='flex justify-center items-center w-full '>
+            </main>
+             {/* <main className='flex justify-center items-center w-full '>
                 <section className='my-auto w-full'>
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>
@@ -117,16 +73,15 @@ const Details = () => {
                             <div>No Data Found</div>
                             <div>Please Make Correct Selection</div>
                         </p>
-
+                        
                         <div className='flex justify-center'>
-                            <button onClick={() => { navigate('/staff') }} className='font-bold text-md text-center text-gray-800'>Please Go Back </button>
-                        </div>
+                            <button onClick={()=>{navigate('/staff')}} className='font-bold text-md text-center text-gray-800'>Please Go Back </button>
+                       </div>
                     </div>
                 </section>
-            </main>}
-
+            </main>  */}
         </>
     )
 }
 
-export default Details
+export default AttendanceDetails

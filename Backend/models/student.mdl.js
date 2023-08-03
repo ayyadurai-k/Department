@@ -30,6 +30,14 @@ const studentSchema = new mongoose.Schema({
         maxLength:[10,"Registration No only contain 10 numbers"],
         unique:true
     },
+    gender:{
+        type :String,
+        required:[true,"Please enter  Gender"],
+    },
+    DOB:{
+        type :String,
+        required:[true,"Please enter  Gender"],
+    },
     password:{
         type:String,
         required:[true,"Please enter password"],

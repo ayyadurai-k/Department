@@ -5,6 +5,7 @@ export const getUser = async(dispatch,url) => {
     try {
         dispatch(userRequest());
         const { data } = await axios.get(url, { withCredentials: true })
+        console.log(data);
         dispatch(userSuccess(data)); 
     }
     catch (error) {

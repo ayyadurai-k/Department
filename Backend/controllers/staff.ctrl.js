@@ -222,8 +222,9 @@ exports.getOneClass = catchAsyncError(async (req, res, next) => {
 
 // url : staff/students/details/:dept/:year/:selectedMonth/:selectedYear
 exports.getOneClassAttendanceReport = catchAsyncError(async (req, res, next) => {
-  const { dept, year, selectedMonth, selectedYear } = req.params;
-
+  const { dept,year, selectedMonth } = req.params;
+  const selectedYear = getYear();
+  
   if (!dept && !year && !selectedMonth && !selectedYear) {
     next(new ErrorHandler("All Fields Are Must Required", 400))
   }

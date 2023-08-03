@@ -53,6 +53,7 @@ exports.studentAuthCheck=async(req,res,next)=>{
   const jwtToken = req.cookies.StudentJwtToken;
 
 
+
   //check token exits or not
   if(!jwtToken){
       return next(new ErrorHandler("Without Token Not Allowed",403))
@@ -64,7 +65,7 @@ exports.studentAuthCheck=async(req,res,next)=>{
         if(err){
           return next(new ErrorHandler("Wrong or Exxpired Token Is Not Allowed Token is Not Allowed please login again",403))
         }
-        else{
+        else {
            data = decoded;
         }
   });
@@ -80,7 +81,7 @@ exports.studentAuthCheck=async(req,res,next)=>{
 
   //store userId to req
   req.user=await students.findById(data.id);
-
+  console.log("auth",await students.findById(data.id));
   //calling next Middleware in this "getStudentDashboard" in called
   next();
 }

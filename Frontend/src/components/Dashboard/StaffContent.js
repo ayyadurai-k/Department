@@ -118,15 +118,15 @@ const StaffContent = () => {
                   {!searchHook.load && searchHook.searchResult !== null && (
                     <div className=" ">
                       <div className="flex font-bold">
-                        <label>Name : </label>
+                        <label className="text-gray-700">Name : </label>
                         <p className="ml-2">{searchHook.searchResult.name}</p>
                       </div>
                       <div className="flex font-bold">
-                        <label>Email : </label>
-                        <p className="ml-2">{searchHook.searchResult.email}</p>
+                        <label className="text-gray-700">Email </label>
+                        <p className="">:{searchHook.searchResult.email}</p>
                       </div>
                       <div className="flex font-bold">
-                        <label>Phone : </label>
+                        <label className="text-gray-700">Phone : </label>
                         <p className="ml-2">{searchHook.searchResult.phone}</p>
                       </div>
                     </div>

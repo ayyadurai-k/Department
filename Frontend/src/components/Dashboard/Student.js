@@ -13,7 +13,8 @@ const Student = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-     getUser(dispatch,'/student/dashboard')
+    getUser(dispatch, '/student/dashboard')
+    console.log(user);
   },[])
   
   if (user.error) {

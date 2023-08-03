@@ -32,7 +32,7 @@ const Attendance = () => {
         
         <>
             {/* <Loader /> */}
-            <main className="p-5 lg:p-8 lg:px-20 w-11/12 mx-auto">
+            <main className="p-5 lg:p-8 lg:px-20 w-10/12 mx-auto mb-10">
                 <section className="">
                     <div className="flex justify-between">
                         <h1 className="font-bold text-xl md:text-2xl uppercase md:tracking-wide">
@@ -70,7 +70,7 @@ const Attendance = () => {
                                 </tbody>
                             </table>
                         </div>
-                        <p className="text-red-600 font-bold text-center my-2">Once Submitted Never Changer Recheck Attendance !</p>           
+                        <p className="text-red-600 font-bold text-center my-5">Once Submitted Never Change Recheck Attendance !</p>           
                         <div className="flex justify-center m-3 f">
                             
                             <button onClick={handleSubmit} className=" text-white hover:bg-blue-700   bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-2 font-bold rounded-lg">Submit</button>

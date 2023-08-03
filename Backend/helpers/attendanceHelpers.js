@@ -15,7 +15,7 @@ const schedule = require("node-schedule");
 const getStudents = async (dept, year) => {
   // get data which is based on department and year
   const studentsData = await students.find({ dept: dept, year: year }).select('-password');
-
+console.log("called",studentsData);
   return studentsData;
 };
 

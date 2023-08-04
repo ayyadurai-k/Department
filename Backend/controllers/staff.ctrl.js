@@ -308,6 +308,16 @@ exports.getOneStudent = catchAsyncError(async (req, res, next) => {
   })
 })
 
+// url : /staff/details
+exports.getStaffs = catchAsyncError(async (req, res, next) => {
+  const result = await staffs.find({ position: { $ne: "HOD" } }).select('-password').select('-DOB').select('-position');
+
+  res.status(200).json({
+    success : true,
+    data : result
+  })
+})
+
 // url : /staff/logout
 exports.staffLogout = catchAsyncError(async (req, res, next) => {
   //clear cookie via set null

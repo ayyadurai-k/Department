@@ -13,6 +13,7 @@ import Attendance from "./components/Attendance";
 import Error from "./components/Error";
 import Success from "./components/Success";
 import AttendanceDetails from "./components/AttendanceDetails";
+import StaffDetails from "./components/StaffDetails";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/staff" element={ <Staff/>}/>
         <Route path="/student" element={<Student />} />
         <Route path="/details/:dept/:year" element={<Details/>}/>
+        <Route path="/details/staff" element={<StaffDetails/>}/>
         <Route path="/attendance-details/:dept/:year/:month" element={<AttendanceDetails/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/about" element={<About/>}/>

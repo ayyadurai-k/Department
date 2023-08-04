@@ -6,5 +6,5 @@ const instance = axios.create({
 })
 
 export const getStaffs = async() => {
-    return await instance.get()
+    return await instance.get('/staff/details')
 }

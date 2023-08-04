@@ -5,9 +5,14 @@ import useDetails from "../../hooks/useDetails";
 import Report from "./Report";
 import useAttendance from "../../hooks/useAttendance";
 import useSearch from "../../hooks/useSearch";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const StaffContent = () => {
   const [month, setMonth] = useState([]);
+  const { user } = useSelector((state) => state.user);
+  console.log(user);
+  
   const {
     radio,
     error,
@@ -192,9 +197,9 @@ const StaffContent = () => {
             ></input>
             <span className="ml-1">Attendance Details</span>
           </label>
-          <label className="bg-white px-3 py-1 ml-5 rounded-xl font-bold hover:cursor-pointer">
-            Staff Details
-          </label>
+          {user.data.position==="HOD" && <label className="bg-white px-3 py-1 ml-5 rounded-xl font-bold hover:cursor-pointer">
+            <Link to={'/details/staff'}>Staff Details</Link>
+          </label>}
         </div>
         <div
           className={`grid grid-cols-1   mt-7 gap-3 ${

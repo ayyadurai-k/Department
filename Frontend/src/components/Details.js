@@ -52,7 +52,11 @@ const Details = () => {
             {loading && <Loader />}
             {!error && !loading && <main className="bg-gray-300  w-full p-2 h-screen mb-10">
                 <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5 ">
-                    <h1 className="font-bold text-black text-2xl center">Class Name</h1>
+                    <h1 className="font-bold text-black text-2xl center">
+                        {
+                            `${year===1  ? '1st' : year===2 ? '2nd' : '3rd'  }  ${dept.toUpperCase()}`
+                        }
+                    </h1>
                     <div className='hidden md:block'>
                         <table className="w-full mt-5 ">
                             <thead className="bg-blue-500 border-b-2 rounded border-gray-600 text-xl">
@@ -81,11 +85,11 @@ const Details = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className='md:hidden'>
+                    <div className='md:hidden mb-5'>
                         {
                             students.map((student) => {
                                 return (
-                                    <div className='bg-blue-400  rounded-2xl shadow- mt-2' key={student.regno}>
+                                    <div className='bg-blue-400  rounded-2xl shadow- mt-2 mb-9' key={student.regno}>
                                         <div className='flex flex-col md:flex'>
                                             <div className='w-full md:w-1/4 py-3 flex bg-blue-500 rounded-t-2xl'>
                                                 <h1 className='m-auto  text-center font-bold text-lg'>{student.regno}</h1>

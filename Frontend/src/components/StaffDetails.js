@@ -5,6 +5,7 @@ import Loader from './Loader'
 const StaffDetails = () => {
 
     const navigate = useNavigate();
+    const ok = useNavigate();
     const [staffs, setStaffs] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)

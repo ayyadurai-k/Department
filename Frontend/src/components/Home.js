@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom';
 import { Helmet ,HelmetProvider} from 'react-helmet-async';
 //images
 import college from '../assets/Clg-3.png';
-import quote from '../assets/quote.png';
+import quoteImg from '../assets/quote.png';
 import dayorder from '../assets/dayorder.png';
+import { getQuote } from '../utils/quoteGenerator';
 
 const Home = () => {
-
-
-
 
     //date
     const date = new Date();
@@ -20,6 +18,11 @@ const Home = () => {
         year : ''
     })
 
+    const [quote,setQuote]=useState({
+        quote :"Life isn’t about getting and having, it’s about giving and being.",
+        author :"Kevin Kruse"
+    });
+
     useEffect(() => {
         const timer = setInterval(() => {
             setToday({
@@ -29,10 +32,25 @@ const Home = () => {
             },1000)
         })
 
+        
+
         return function cleanup() {
-            clearInterval(timer);
+            clearInterval(timer); 
         }
     })
+
+    //for quote
+    useEffect(()=>{
+        const quoteInterval=setInterval(()=>{
+            setQuote(getQuote())
+       },7000)
+
+       return function cleanup() {
+        clearInterval(quoteInterval);
+    }
+    },[])
+
+    
 
     //for animation
      // if day order equal to 1
@@ -40,6 +58,8 @@ const Home = () => {
     useEffect(() => {
         setDayOrder(4); 
     },[])
+
+
     return (
         <>
             <HelmetProvider>
@@ -65,13 +85,13 @@ const Home = () => {
                 </div>
             </main>
             <section className='bg-orange-400   rounded-2xl  p-5  mb-10 w-3/4 mx-auto md:m-5'>
-                <div className='grid grid-cols-3 md:grid-cols-4 gap-2'>
+                <div className='grid grid-cols-2 md:grid-cols-4 gap-2'>
                     <div className='  hidden md:block'>
-                        <img src={quote} className='w-36 mx-auto' alt='Quote'></img>
+                        <img src={quoteImg} className='w-36 mx-auto' alt='Quote'></img>
                     </div>
-                    <div className='col-span-3 '>
-                        <h1 className='text-4xl font-bold text-center md:text-left'>Quote </h1>
-                        <p className='text-gray-900 mt-3 ml-5 text-center md:text-left font-semibold'>“Success usually comes to those who are too busy to be looking for it.” - Henry David Thoreau</p>
+                    <div className='col-span-3  flex flex-col'>
+                        <h1 className='text-4xl font-bold text-center md:text-left mb-5 lg:mb-0'>Quote </h1>
+                        <p className='animate-bounce  text-gray-900 mt-3 lg:ml-5 text-center md:text-left font-semibold'>{`"${quote.quote}"-${quote.author}`}</p>
                     </div>
                 </div>
             </section>

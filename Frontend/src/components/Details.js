@@ -8,7 +8,6 @@ import { getStudents } from '../API/studentAPI';
 const Details = () => {
 
     const { dept, year } = useParams();
-
     const navigate = useNavigate();
 
     const [students, setStudents] = useState([]);
@@ -50,14 +49,14 @@ const Details = () => {
     return (
         <>
             {loading && <Loader />}
-            {!error && !loading && <main className="bg-gray-300  w-full p-2 h-screen mb-10">
-                <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5 ">
+            {!error && !loading && <main className="bg-gray-300  w-full p-2 h-full ">
+                <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5 mb-16">
                     <h1 className="font-bold text-black text-2xl center">
                         {
-                            `${year===1  ? '1st' : year===2 ? '2nd' : '3rd'  }  ${dept.toUpperCase()}`
+                            `${year==="1"  ? '1st' : year==="2" ? '2nd' : '3rd'  }  ${dept.toUpperCase()}`
                         }
                     </h1>
-                    <div className='hidden md:block'>
+                    <div className='hidden md:block '>
                         <table className="w-full mt-5 ">
                             <thead className="bg-blue-500 border-b-2 rounded border-gray-600 text-xl">
                                 <tr className="">

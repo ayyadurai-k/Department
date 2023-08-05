@@ -1,18 +1,18 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import students from '../data/students.json'
 import Loader from './Loader'
 import { useEffect, useState } from 'react';
 import checkInput from '../utils/checkInput';
 import { getStudents } from '../API/studentAPI';
 import { getClass } from '../utils/class';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 const Details = () => {
 
     const { dept, year } = useParams();
     const navigate = useNavigate();
-    const {user} = useSelector((state)=>state.user)
+    const { user } = useSelector((state) => state.user)
     const [students, setStudents] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLodaing] = useState(false);
@@ -21,8 +21,8 @@ const Details = () => {
 
         if (!dept.toUpperCase() === "CS" || !dept.toUpperCase() === "IT" || !(Number(year) < 4 && Number(year) > 0)) {
             return setError("No Matched Students Data...!")
-         }
-            
+        }
+
         //first check Input
         const checkResult = checkInput(dept.toUpperCase(), year);
 
@@ -33,7 +33,7 @@ const Details = () => {
         }
 
         async function api() {
-            
+
             //call api
             try {
                 setLodaing(true)
@@ -42,28 +42,33 @@ const Details = () => {
                 setStudents(result.data.studentsData)
             }
             catch (error) {
-                 setError(true);
+                setError(true);
             }
             finally {
                 setLodaing(false)
             }
-            
+
         }
         api();
-    },[])
+    }, [])
 
-    
+
 
     return (
         <>
             {loading && <Loader />}
             {!error && !loading && <main className="bg-gray-300  w-full p-2 h-full ">
                 <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5 mb-16">
-                    <h1 className="font-bold text-black text-2xl center">
-                        {
-                            getClass(dept,year)
-                        }
-                    </h1>
+                    <div className='flex justify-between'>
+                        <h1 className="font-bold text-black text-2xl center">
+                            {
+                                getClass(dept, year)
+                            }
+                        </h1>
+                        <Link to={'/staff'} className="rounded-lg bg-black font-bold text-sm px-3 py-1">
+                            <label className="cursor-pointer text-white ">Back</label>
+                        </Link>
+                    </div>
                     <div className='hidden md:block '>
                         <table className="w-full mt-5 ">
                             <thead className="bg-blue-500 border-b-2 rounded border-gray-600 text-xl">
@@ -125,7 +130,7 @@ const Details = () => {
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>
                         <p className='bg-red-500 rounded-lg p-5 font-bold text-lg text-center my-3'>
-                            
+
                             {error}
                         </p>
 

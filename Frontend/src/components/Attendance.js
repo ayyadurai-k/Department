@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loader from './Loader';
 import { getDate } from '../utils/date';
 import { getClass } from "../utils/class";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getStudents } from "../API/studentAPI";
 
 const Attendance = () => {
@@ -13,27 +13,27 @@ const Attendance = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     //get department using params;
-    
+
 
     useEffect(() => {
         if (!dept.toUpperCase() === "CS" || !dept.toUpperCase() === "IT" || !(Number(year) < 4 && Number(year) > 0)) {
             console.log("called");
-            
+
             return setError("No Matched Students Data...!")
-         }
-        async function api() {    
+        }
+        async function api() {
             try {
                 setLoading(true)
                 const students = (await getStudents(dept, year)).data.studentsData;
                 setStudents(students);
             }
             catch (error) {
-               return setError(error.response.data.message)   
+                return setError(error.response.data.message)
             }
             finally {
-                setTimeout(()=>{
-                    setLoading(false)
-                },1000)
+
+                setLoading(false)
+
             }
         }
         api();
@@ -76,6 +76,9 @@ const Attendance = () => {
                         </label>
                     </div>
                     <div className=" mt-2 rounded-xl bg-gradient-to-r p-3 from-emerald-400 to-cyan-400 ">
+                        <Link to={'/staff'} className="rounded-lg bg-white font-bold text-sm px-3 py-1">
+                            <label className="cursor-pointer">Back</label>
+                        </Link>
                         <h1 className="font-bold m text-black text-center text-lg md:text-xl">
                             {getClass(dept, year)}
                         </h1>

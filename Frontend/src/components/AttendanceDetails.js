@@ -1,16 +1,26 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import students from '../data/students.json'
 import Loader from './Loader'
+import { getClass } from '../utils/class';
 
 const AttendanceDetails = () => {
     const navigate = useNavigate();
-    
+    const dept="CS",year=4;
     return (
         <>
             {/* <Loader /> */}
             <main className="bg-gray-300  w-full p-2 h-screen">
                 <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5">
-                    <h1 className="font-bold text-black text-2xl center">Class Name</h1>
+                    <div className='flex justify-between'>
+                        <h1 className="font-bold text-black text-2xl center">
+                            {
+                                getClass(dept, year)
+                            }
+                        </h1>
+                        <Link to={'/staff'} className="rounded-lg bg-black font-bold text-sm px-3 py-1">
+                            <label className="cursor-pointer text-white ">Back</label>
+                        </Link>
+                    </div>
                     <div className='hidden md:block'>
                         <table className="w-full mt-5 ">
                             <thead className="bg-blue-500 border-b-2 rounded border-gray-600 text-xl">
@@ -65,7 +75,7 @@ const AttendanceDetails = () => {
                     </div>
                 </section>
             </main>
-             {/* <main className='flex justify-center items-center w-full '>
+            {/* <main className='flex justify-center items-center w-full '>
                 <section className='my-auto w-full'>
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>

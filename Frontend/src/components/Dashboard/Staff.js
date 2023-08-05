@@ -8,13 +8,13 @@ import { useNavigate } from 'react-router-dom';
 
 const Staff = () => {
 
-    const { user } = useSelector((state) => state);
+    const  user  = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
         getUser(dispatch, '/staff/dashboard')
-    }, []);
+    },[dispatch]);
 
     
     if (user.error) {

@@ -1,17 +1,17 @@
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import { Link, NavLink } from 'react-router-dom'
 //images
 import logo from '../assets/logo.png';
-import { useDispatch, useSelector } from "react-redux";
-import { changeSelect } from "../app/slicers/navSlicer";
+// import { useDispatch, useSelector } from "react-redux";
+// import { changeSelect } from "../app/slicers/navSlicer";
 
 
 const Header = () => {
     const [open, setOpen] = useState(false);
     
-    const select = useSelector((state)=>state.navbar)
+    // const select = useSelector((state)=>state.navbar)
    
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     
     

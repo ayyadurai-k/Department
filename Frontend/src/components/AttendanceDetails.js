@@ -1,10 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import students from '../data/students.json'
-import Loader from './Loader'
+// import Loader from './Loader'
 import { getClass } from '../utils/class';
 
 const AttendanceDetails = () => {
-    const navigate = useNavigate();
     const dept="CS",year=4;
     return (
         <>

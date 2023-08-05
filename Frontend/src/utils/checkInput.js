@@ -1,4 +1,3 @@
-import React from 'react'
 
 const checkInput = (inputDept,inputYear) => {
     const dept = ["IT", "CS"]

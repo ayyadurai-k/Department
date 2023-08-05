@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 const StaffContent = () => {
   const [month, setMonth] = useState([]);
   const { user } = useSelector((state) => state.user);
-  console.log(user);
   
   const {
     radio,
@@ -38,15 +37,15 @@ const StaffContent = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             <div className="">
               <div className=" p-5 rounded-xl shadow-2xl bg-gradient-to-r from-rose-400 to-red-500">
-                <h1 className="font-bold  text-2xl">Attendance</h1>
-                <div className="mt-5 flex flex-col">
+                <h1 className="font-bold  text-xl lg:text-2xl">Attendance</h1>
+                <div className="mt-3 flex flex-col">
                   <label className="ml-1">
                     <span className="font-bold text-gray-800">Department</span>
                     <select
                       name="dept"
                       value={attendanceHook.input.dept}
                       onChange={attendanceHook.handleChange}
-                      className="rounded ml-2 outline-none"
+                      className="py-0.5 rounded ml-2 outline-none"
                     >
                       <option value="null">Dept</option>
                       <option value="cs">CS</option>
@@ -59,7 +58,7 @@ const StaffContent = () => {
                       name="year"
                       value={attendanceHook.input.year}
                       onChange={attendanceHook.handleChange}
-                      className="rounded ml-2 outline-none mt-2"
+                      className="rounded py-0.5  ml-2 outline-none mt-2"
                     >
                       <option value="null">Year</option>
                       <option value="1">1</option>
@@ -73,10 +72,10 @@ const StaffContent = () => {
                     {attendanceHook.error}
                   </div>
                 )}
-                <div className="flex justify-center mt-3">
+                <div className="flex justify-center mt-1">
                   <button
                     onClick={attendanceHook.handleSubmit}
-                    className="  px-4 py-1 rounded-md border-white bg-white font-bold text-rose-500 shadow-xl hover:bg-gray-300 "
+                    className="mt-2  px-4 py-1 rounded-md border-white bg-white font-bold text-rose-500 shadow-xl hover:bg-gray-300 w-full lg:w-auto "
                   >
                     Go
                   </button>
@@ -86,7 +85,7 @@ const StaffContent = () => {
             <Report />
             <div className="">
               <div className="rounded-xl p-4 shadow-xl bg-gradient-to-r from-amber-500 to-pink-500">
-                <h1 className="font-bold  text-2xl">Search Students</h1>
+                <h1 className="font-bold  text-xl lg:text-2xl">Search Students</h1>
                 <div className="flex mt-3">
                   <input
                     type="text"
@@ -119,9 +118,9 @@ const StaffContent = () => {
                 {searchHook.error && (
                   <div className="font-bold mt-1">{searchHook.error}</div>
                 )}
-                <div className="bg-white rounded-xl mt-2 p-2 ">
+                <div className="bg-white rounded-xl mt-2 p-1.5">
                   {!searchHook.load && searchHook.searchResult !== null && (
-                    <div className=" ">
+                    <div className=" lg:text-sm ">
                       <div className="flex font-bold">
                         <label className="text-gray-700">Name : </label>
                         <p className="ml-2">{searchHook.searchResult.name}</p>
@@ -173,7 +172,7 @@ const StaffContent = () => {
         </div>
       </div>
       <div className="bg-teal-400 w-4/5 mx-auto rounded-2xl p-5 mb-20 mt-5">
-        <h1 className="text-3xl font-bold text-center lg:text-left">Details</h1>
+        <h1 className="text-xl lg:text-2xl font-bold text-center lg:text-left">Details</h1>
         <div className="my-2 flex flex-wrap">
           <label className="m-1 font-bold">
             <input

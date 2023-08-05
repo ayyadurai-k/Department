@@ -30,7 +30,6 @@ const useSearch = () => {
         try {
             setLoad(true);
             const {data} = ( await searchStudent(input.toUpperCase())).data;
-            console.log(data);
             setSearchResult({
                 name: data.name,
                 email: data.email,

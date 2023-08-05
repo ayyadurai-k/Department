@@ -45,7 +45,6 @@ const useDetails = () => {
             navigate(`/attendance-details/${input.dept}/${input.year}/${input.month}`)
         }
         setError(null)
-        console.log(input);
     }
 
     return { radio,error, setRadio ,input,setInput,setError,handleChange,handleSubmit};

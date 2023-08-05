@@ -1,12 +1,12 @@
 import  { useState } from 'react'
-import { useMavigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const useAttendance = () => {
     const [input, setInput] = useState( {
         dept: 'null',
         year : 'null' 
     })
-    const [error,setError]=useState(null)
+    const [error,setError]=useState(null);
     const navigate = useNavigate();
 
     const handleChange = (e) => {

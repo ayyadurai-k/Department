@@ -5,7 +5,6 @@ const instance = axios.create({
     baseURL:'http://localhost:3001'    
 })
 
-export const searchStudent = async (regNo) => {
-   return await instance.get(`/staff/search/student/${regNo}`);
+export const postAttendanceData =()=>{
+    
 }
-

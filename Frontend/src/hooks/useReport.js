@@ -41,10 +41,9 @@ const useReport = () => {
             if (!user.data.position) {
                data = (await selfAttendanceReport(input,'/student/attendance/report/')).data.data
             }
-            console.log(data);
             // set attendance deatils
             setReport({
-                lodaing: false,
+                loading: false,
                 present: data.present,
                 absent : data.absent
             })

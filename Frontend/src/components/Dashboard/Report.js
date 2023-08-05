@@ -17,7 +17,7 @@ const Report = () => {
     return (
         <div className=' '>
             <div className='p-5 rounded-xl shadow-xl  bg-gradient-to-r from-pink-500 to-rose-500'>
-                <h1 className='font-bold  text-2xl'>Self-Attendace Report</h1>
+                <h1 className='font-bold  text-xl lg:text-2xl'>Self-Attendace Report</h1>
                 <div className='mt-3 grid grid-cols-1 lg:grid-cols-2'>
                     <label className='ml-1'>
                         <span className='font-bold text-gray-800'>Month</span>
@@ -34,9 +34,9 @@ const Report = () => {
                 {reportHook.error!=null && <div className='mt-3 font-bold text-black'>{ reportHook.error}</div>}
 
                 <div className='flex justify-center mt-2'>
-                    <button onClick={reportHook.handleSubmit} className=' justify-between px-4 py-1 rounded-md flex border-white bg-white font-bold text-rose-500 shadow-xl hover:bg-gray-300 '>
-                        <span className='mr-1'>Get</span>
-                        {reportHook.report.loading && <MiniLoader/>}
+                    <button onClick={reportHook.handleSubmit} className='  px-4 py-1 rounded-md flex justify-center border-white bg-white font-bold text-rose-500 shadow-xl hover:bg-gray-300 w-full lg:w-auto text-center'>
+                        <span className=' text-center mr-5'>Get</span>
+                        {reportHook.report.loading && <MiniLoader className=""/>}
                     </button>
                 </div>
             </div>

@@ -6,13 +6,14 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { getStudents } from "../API/studentAPI";
 
 const Attendance = () => {
+    //get department using params;
     const { dept, year } = useParams();
     const [students, setStudents] = useState([]);
     const [absent, setAbsent] = useState({})
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [success,setSuccess]=useState(false);
     const navigate = useNavigate();
-    //get department using params;
 
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const Attendance = () => {
             }
         }
         api();
-    }, [])
+    }, [dept,year])
 
     const handleChange = (e) => {
         const { name, checked } = e.target;
@@ -59,13 +60,13 @@ const Attendance = () => {
     }
 
     const handleSubmit = () => {
-        console.log(absent);
+       
     }
     return (
 
         <>
             {loading && <Loader />}
-            {!error && !loading && <main className="p-5 lg:p-8 lg:px-20 w-10/12 mx-auto mb-10">
+            {!error && !loading && !success&&<main className=" p-5 lg:p-8 lg:px-20 w-10/12 mx-auto mb-10">
                 <section className="">
                     <div className="flex justify-between">
                         <h1 className="font-bold text-xl md:text-2xl uppercase md:tracking-wide">
@@ -115,7 +116,7 @@ const Attendance = () => {
                     </div>
                 </section>
             </main>}
-            {error && !loading && <main className='flex justify-center items-center w-full '>
+            {error && !success&& !loading && <main className='flex justify-center items-center w-full '>
                 <section className='my-auto w-full'>
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>
@@ -128,6 +129,17 @@ const Attendance = () => {
                         </div>
                     </div>
                 </section>
+            </main>}
+            {  !error && success && !loading&& <main className='flex justify-center items-center w-full   '>
+                    <section className='my-auto w-full '>
+                        <div className=' w-1/3 p-5 rounded-lg mx-auto mt-20'>
+                            <h1 className='font-bold text-2xl text-center'>Success</h1>
+                            <p className='bg-green-500 rounded-lg p-5 font-bold text-lg text-center my-3'>Attendance Posted Succesfully...!</p>
+                            <p className='font-bold text-md text-center text-gray-800'>
+                                <Link to={'/staff'}>Please Go Back</Link>
+                            </p>
+                        </div>
+                    </section>
             </main>}
         </>
     );

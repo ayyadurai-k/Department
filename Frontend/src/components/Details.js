@@ -1,18 +1,15 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import students from '../data/students.json'
 import Loader from './Loader'
 import { useEffect, useState } from 'react';
 import checkInput from '../utils/checkInput';
 import { getStudents } from '../API/studentAPI';
 import { getClass } from '../utils/class';
-import { useSelector } from 'react-redux';
 
 
 const Details = () => {
 
     const { dept, year } = useParams();
     const navigate = useNavigate();
-    const { user } = useSelector((state) => state.user)
     const [students, setStudents] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLodaing] = useState(false);
@@ -38,7 +35,6 @@ const Details = () => {
             try {
                 setLodaing(true)
                 const result = await getStudents(dept, year)
-                console.log(result);
                 setStudents(result.data.studentsData)
             }
             catch (error) {
@@ -50,7 +46,7 @@ const Details = () => {
 
         }
         api();
-    }, [])
+    }, [dept,year])
 
 
 

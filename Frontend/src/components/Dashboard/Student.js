@@ -8,14 +8,13 @@ import { useDispatch, useSelector} from 'react-redux'
 import { getUser } from "../../app/actions/getUser";
 const Student = () => {
  
-  const { user } = useSelector((state) => state);
+  const  user  = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     getUser(dispatch, '/student/dashboard')
-    console.log(user);
-  },[])
+  },[dispatch])
   
   if (user.error) {
     return navigate('/login')

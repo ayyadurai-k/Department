@@ -30,7 +30,7 @@ route.post('/staff/attendance/:dept/:year',staffAuthCheck,postAttendanceData)
 route.post('/staff/self-attendance',staffAuthCheck,selfAttendance)
 
 //get one class
-route.get('/staff/class/:dept/:year', staffAuthCheck, getOneClass);
+route.get('/staff/class/:dept/:year', staffAuthCheck,getOneClass);
 
 //get one class attendance report
 route.get('/staff/students/details/:dept/:year/:selectedMonth', staffAuthCheck, getOneClassAttendanceReport);

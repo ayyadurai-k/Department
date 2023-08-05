@@ -1,4 +1,5 @@
 import  { useState } from 'react'
+import { useMavigate, useNavigate } from 'react-router-dom'
 
 const useAttendance = () => {
     const [input, setInput] = useState( {
@@ -6,6 +7,7 @@ const useAttendance = () => {
         year : 'null' 
     })
     const [error,setError]=useState(null)
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -20,7 +22,7 @@ const useAttendance = () => {
         if (input.dept === 'null' || input.year === 'null') {
             return setError("All Fields Are Must Required!")
         }
-        console.log(input);
+        navigate(`/attendance/${input.dept}/${input.year}`)
         setError(null);
     }
 

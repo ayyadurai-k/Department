@@ -4,20 +4,27 @@ import Loader from './Loader'
 import { useEffect, useState } from 'react';
 import checkInput from '../utils/checkInput';
 import { getStudents } from '../API/studentAPI';
+import { getClass } from '../utils/class';
+import {useSelector} from 'react-redux';
+
 
 const Details = () => {
 
     const { dept, year } = useParams();
     const navigate = useNavigate();
-
+    const {user} = useSelector((state)=>state.user)
     const [students, setStudents] = useState([]);
-    const [error, setError] = useState(false);
+    const [error, setError] = useState(null);
     const [loading, setLodaing] = useState(false);
 
     useEffect(() => {
+
+        if (!dept.toUpperCase() === "CS" || !dept.toUpperCase() === "IT" || !(Number(year) < 4 && Number(year) > 0)) {
+            return setError("No Matched Students Data...!")
+         }
+            
         //first check Input
         const checkResult = checkInput(dept.toUpperCase(), year);
-
 
 
         // if error occurs update error state
@@ -26,6 +33,7 @@ const Details = () => {
         }
 
         async function api() {
+            
             //call api
             try {
                 setLodaing(true)
@@ -53,7 +61,7 @@ const Details = () => {
                 <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5 mb-16">
                     <h1 className="font-bold text-black text-2xl center">
                         {
-                            `${year==="1"  ? '1st' : year==="2" ? '2nd' : '3rd'  }  ${dept.toUpperCase()}`
+                            getClass(dept,year)
                         }
                     </h1>
                     <div className='hidden md:block '>
@@ -117,12 +125,12 @@ const Details = () => {
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>
                         <p className='bg-red-500 rounded-lg p-5 font-bold text-lg text-center my-3'>
-                            <div>No Data Found</div>
-                            <div>Please Make Correct Selection</div>
+                            
+                            {error}
                         </p>
 
                         <div className='flex justify-center'>
-                            <button onClick={() => { navigate('/staff') }} className='font-bold text-md text-center text-gray-800'>Please Go Back </button>
+                            <button onClick={() => { navigate('/') }} className='font-bold text-md text-center text-gray-800'>Please Go Back </button>
                         </div>
                     </div>
                 </section>

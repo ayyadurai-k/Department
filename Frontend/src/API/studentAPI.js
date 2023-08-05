@@ -9,3 +9,4 @@ export const getStudents = async(dept,year) => {
     return await instance.get(`/staff/class/${dept}/${year}`)
 }
 
+

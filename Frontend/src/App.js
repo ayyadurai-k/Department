@@ -31,7 +31,7 @@ function App() {
         <Route path="/attendance-details/:dept/:year/:month" element={<AttendanceDetails/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/about" element={<About/>}/>
-        <Route path="/attendance" element={<Attendance/>}/>
+        <Route path="/attendance/:dept/:year" element={<Attendance/>}/>
         <Route path="/error" element={<Error/>}/>
         <Route path="/success" element={<Success/>}/>
         <Route path="*" element={<PageNotFound/>}/>

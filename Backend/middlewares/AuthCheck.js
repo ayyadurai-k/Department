@@ -82,6 +82,7 @@ exports.studentAuthCheck=async(req,res,next)=>{
   //store userId to req
   req.user=await students.findById(data.id);
   console.log("auth",await students.findById(data.id));
+  
   //calling next Middleware in this "getStudentDashboard" in called
   next();
 }

@@ -5,8 +5,13 @@ const instance = axios.create({
     baseURL:'http://localhost:3001'    
 })
 
-export const getStudents = async(dept,year) => {
-    return await instance.get(`/staff/class/${dept}/${year}`)
+export const getStudents = async(dept,year,onlyReg) => {
+    if(onlyReg){
+        return await instance.get(`/staff/attendance/${dept}/${year}`)
+    }
+    else{
+        return await instance.get(`/staff/class/${dept}/${year}`)
+    }
 }
 
 

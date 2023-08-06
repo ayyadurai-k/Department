@@ -13,9 +13,9 @@ const { getDate, getMonth, getYear } = require("./dateTimeHelper");
 const schedule = require("node-schedule");
 
 const getStudents = async (dept, year) => {
+
   // get data which is based on department and year
-  const studentsData = await students.find({ dept: dept, year: year }).select('-password');
-console.log("called",studentsData);
+  const studentsData = await students.find({ dept: dept.toUpperCase(), year }).select('-password');
   return studentsData;
 };
 
@@ -97,30 +97,30 @@ const convertAttendance = (reports) => {
 
   reports.forEach((report) => {
     if (!result[report.regno]) {
-        if (report.present) {
-          result[report.regno] = {
-            present: 1,
-            absent : 0
-          };
-        }
-        else {
-          result[report.regno] = {
-            present: 0,
-            absent : 1
-          };
-        }
+      if (report.present) {
+        result[report.regno] = {
+          present: 1,
+          absent: 0
+        };
+      }
+      else {
+        result[report.regno] = {
+          present: 0,
+          absent: 1
+        };
+      }
     }
     else {
       if (report.present) {
         result[report.regno] = {
           ...result[report.regno],
-          present:result[report.regno].present+1
+          present: result[report.regno].present + 1
         }
       }
       else {
         result[report.regno] = {
           ...result[report.regno],
-          absent:result[report.regno].absent+1
+          absent: result[report.regno].absent + 1
         }
       }
     }
@@ -132,9 +132,16 @@ const convertAttendance = (reports) => {
 // start schedule
 automaticStaffAttendance();
 
+
+const checkUpdateOrNot = async (dept, year) => {
+  const result = await studentAttendance.find({ dept: dept, year: year, updatedAt: getDate() })
+  return result.length ? true : false
+}
+
 module.exports = {
   getStudents,
   giveStudentAttendance,
   giveStaffAttendance,
   convertAttendance,
+  checkUpdateOrNot
 };

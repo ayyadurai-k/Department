@@ -4,7 +4,7 @@ import { getDate } from '../utils/date';
 import { getClass } from "../utils/class";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getStudents } from "../API/studentAPI";
-
+import { postAttendanceData } from "../API/attendanceAPI";
 const Attendance = () => {
     //get department using params;
     const { dept, year } = useParams();
@@ -13,6 +13,7 @@ const Attendance = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success,setSuccess]=useState(false);
+    const [successLoading,setSuccessLoading] = useState(false);
     const navigate = useNavigate();
 
 
@@ -25,16 +26,14 @@ const Attendance = () => {
         async function api() {
             try {
                 setLoading(true)
-                const students = (await getStudents(dept, year)).data.studentsData;
+                const students = (await getStudents(dept, year,true)).data.studentsData;
                 setStudents(students);
             }
             catch (error) {
                 return setError(error.response.data.message)
             }
             finally {
-
                 setLoading(false)
-
             }
         }
         api();
@@ -59,13 +58,25 @@ const Attendance = () => {
         }
     }
 
-    const handleSubmit = () => {
-       
+    const handleSubmit = async() => {
+       try{
+        setSuccessLoading(true);
+        const result= await postAttendanceData(dept,year,absent);
+        setSuccess(true);
+       }
+       catch(error){
+            console.log(error);
+       }
+       finally{
+        setSuccessLoading(false);
+        
+       } 
     }
     return (
 
         <>
-            {loading && <Loader />}
+            {loading && <Loader/>}
+            {successLoading && <Loader/>}
             {!error && !loading && !success&&<main className=" p-5 lg:p-8 lg:px-20 w-10/12 mx-auto mb-10">
                 <section className="">
                     <div className="flex justify-between">
@@ -116,7 +127,8 @@ const Attendance = () => {
                     </div>
                 </section>
             </main>}
-            {error && !success&& !loading && <main className='flex justify-center items-center w-full '>
+            {error && !success&& <>
+              {!loading && <main className='flex justify-center items-center w-full '>
                 <section className='my-auto w-full'>
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>
@@ -130,7 +142,11 @@ const Attendance = () => {
                     </div>
                 </section>
             </main>}
-            {  !error && success && !loading&& <main className='flex justify-center items-center w-full   '>
+            {
+                loading && <Loader/>
+            }
+            </>}
+            {  !error && success && !loading&& !successLoading && <main className='flex justify-center items-center w-full   '>
                     <section className='my-auto w-full '>
                         <div className=' w-1/3 p-5 rounded-lg mx-auto mt-20'>
                             <h1 className='font-bold text-2xl text-center'>Success</h1>

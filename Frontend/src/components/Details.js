@@ -34,7 +34,7 @@ const Details = () => {
             //call api
             try {
                 setLodaing(true)
-                const result = await getStudents(dept, year)
+                const result = await getStudents(dept, year,false)
                 setStudents(result.data.studentsData)
             }
             catch (error) {

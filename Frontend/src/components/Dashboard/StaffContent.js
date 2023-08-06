@@ -212,7 +212,7 @@ const StaffContent = () => {
                 name="dept"
                 value={input.dept}
                 onChange={handleChange}
-                className="font-bold outline-none ml-2  rounded-lg px-3 py-0.5"
+                className="font-bold outline-none ml-2  rounded-lg px-7 py-0.5"
               >
                 <option
                   className="font-bold px-2 py-1 hover:bg-teal-400"
@@ -240,7 +240,7 @@ const StaffContent = () => {
                 name="year"
                 value={input.year}
                 onChange={handleChange}
-                className="font-bold outline-none ml-2  rounded-lg px-3 py-0.5"
+                className="font-bold outline-none ml-2  rounded-lg px-7 py-0.5"
               >
                 <option
                   className="font-bold px-2 py-1 hover:bg-teal-400"
@@ -278,7 +278,7 @@ const StaffContent = () => {
                   name="month"
                   value={input.month}
                   onChange={handleChange}
-                  className="font-bold outline-none ml-2  rounded-lg px-3 py-0.5"
+                  className="font-bold outline-none ml-2  rounded-lg px-7 py-0.5"
                 >
                   <option
                     className="font-bold px-2 py-1 hover:bg-teal-400"

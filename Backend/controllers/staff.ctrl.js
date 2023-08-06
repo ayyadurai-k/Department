@@ -6,6 +6,7 @@ const {
   giveStudentAttendance,
   giveStaffAttendance,
   convertAttendance,
+  checkUpdateOrNot,
 } = require("../helpers/attendanceHelpers");
 
 const staffs = require("../models/staff.mdl");
@@ -72,7 +73,7 @@ exports.getStaffDashboard = catchAsyncError(async (req, res, next) => {
     updatedAt: currentDate,
   });
 
-  
+
 
   res.status(200).json({
     success: true,
@@ -94,24 +95,20 @@ exports.getAttendancePage = catchAsyncError(async (req, res, next) => {
       new ErrorHandler("Department and Year parameter is required", 404)
     );
   }
-  //getting current date
-  const currentDate = getDate();
 
   //getting last studentAttendance updated date via studentAttendance database
-  const updatedOrNot = await studentAttendance
-    .find({ dept: dept.toUpperCase(), year: year, updatedAt: currentDate })
-    .lean();
+  const updatedOrNot = await checkUpdateOrNot(dept, year)
 
-  if (updatedOrNot.length) {
+  if (updatedOrNot) {
     return next(new ErrorHandler("Today Attendance Is Already Uploaded", 408));
   }
 
   // get student based on department and year
-  const studentsData = await getStudents(dept, year);
+  const studentsData = await students.find({ dept: dept.toUpperCase(), year }).select('regno');
 
   //check exits or not
   if (!studentsData.length) {
-    return next(new ErrorHandler("No matched Student data", 404));
+    return next(new ErrorHandler("No matched Student data", 400));
   }
 
   res.status(200).json({
@@ -142,13 +139,25 @@ exports.postAttendanceData = catchAsyncError(async (req, res, next) => {
     );
   }
 
+  //getting last studentAttendance updated date via studentAttendance database
+  const updatedOrNot = await checkUpdateOrNot(dept, year)
+
+  console.log(updatedOrNot);
+  if (updatedOrNot) {
+    return next(new ErrorHandler("Today Attendance Is Already Uploaded", 408));
+  }
+
+
+
   // get student based on department and year
-  const studentsData = await getStudents(dept, year);
+  const studentsData = await getStudents(dept, Number(year));
 
   //check exits or not
   if (!studentsData.length) {
-    return next(new ErrorHandler("No matched Student data", 404));
+    return next(new ErrorHandler("No matched Student data", 400));
   }
+
+
 
   // take key form studentAttendance data
   const regNos = Object.keys(attendanceData);
@@ -222,9 +231,9 @@ exports.getOneClass = catchAsyncError(async (req, res, next) => {
 
 // url : staff/students/details/:dept/:year/:selectedMonth/:selectedYear
 exports.getOneClassAttendanceReport = catchAsyncError(async (req, res, next) => {
-  const { dept,year, selectedMonth } = req.params;
+  const { dept, year, selectedMonth } = req.params;
   const selectedYear = getYear();
-  
+
   if (!dept && !year && !selectedMonth && !selectedYear) {
     next(new ErrorHandler("All Fields Are Must Required", 400))
   }
@@ -252,7 +261,7 @@ exports.getOneClassAttendanceReport = catchAsyncError(async (req, res, next) => 
 
 // url: /staff/self-attendance/report/:email/:month
 exports.getStaffAttendanceReport = catchAsyncError(async (req, res, next) => {
-  
+
   const { month } = req.params;
   const year = getYear();
   const email = req.user.email;
@@ -294,17 +303,17 @@ exports.getStaffAttendanceReport = catchAsyncError(async (req, res, next) => {
 });
 
 // url : /staff/search/student/:regno
-exports.getOneStudent = catchAsyncError(async (req, res, next) => { 
-    const {regno} = req.params;
+exports.getOneStudent = catchAsyncError(async (req, res, next) => {
+  const { regno } = req.params;
 
   const student = await students.findOne({ regno }).select('-password');
   if (!student) {
-     return next(new ErrorHandler("No Data Found ! ",400))
+    return next(new ErrorHandler("No Data Found ! ", 400))
   }
 
   res.status(200).json({
     success: true,
-    data : student
+    data: student
   })
 })
 
@@ -313,8 +322,8 @@ exports.getStaffs = catchAsyncError(async (req, res, next) => {
   const result = await staffs.find({ position: { $ne: "HOD" } }).select('-password').select('-DOB').select('-position');
 
   res.status(200).json({
-    success : true,
-    data : result
+    success: true,
+    data: result
   })
 })
 

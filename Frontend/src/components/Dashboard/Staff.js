@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser } from '../../app/actions/getUser';
 import { useNavigate } from 'react-router-dom';
+import { changeSelect } from '../../app/slicers/navSlicer';
 
 const Staff = () => {
 
@@ -13,13 +14,14 @@ const Staff = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        dispatch(changeSelect(2))
         getUser(dispatch, '/staff/dashboard')
+        if (user.error) {
+        return navigate('/login')
+    }
     },[dispatch]);
 
     
-    if (user.error) {
-        return navigate('/login')
-    }
 
 
     return (

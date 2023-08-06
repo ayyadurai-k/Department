@@ -6,6 +6,8 @@ import college from '../assets/Clg-3.png';
 import quoteImg from '../assets/quote.png';
 import dayorder from '../assets/dayorder.png';
 import { getQuote } from '../utils/quoteGenerator';
+import { changeSelect } from '../app/slicers/navSlicer';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
 
@@ -22,6 +24,7 @@ const Home = () => {
         quote :"Life isn’t about getting and having, it’s about giving and being.",
         author :"Kevin Kruse"
     });
+    const dispatch =useDispatch();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -57,7 +60,8 @@ const Home = () => {
     const [dayOrder, setDayOrder] = useState(1);
     useEffect(() => {
         setDayOrder(4); 
-    },[])
+        dispatch(changeSelect(1))
+    },[dispatch])
 
 
     return (

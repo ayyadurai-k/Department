@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HelmetProvider,Helmet } from "react-helmet-async";
+import { useDispatch } from "react-redux";
+import { changeSelect } from "../app/slicers/navSlicer";
 const About = () => {
 
+    const dispatch = useDispatch();
+
+   useEffect(()=>{
+      dispatch(changeSelect(5))
+   },[dispatch])
     
     return (
         <>

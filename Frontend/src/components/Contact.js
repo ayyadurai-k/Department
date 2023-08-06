@@ -1,12 +1,16 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { changeSelect } from "../app/slicers/navSlicer";
 
 const Contact = () => {
 
-  // const dispatch = useDispatch();
+   const dispatch = useDispatch();
 
+   useEffect(()=>{
+      dispatch(changeSelect(4))
+   },[dispatch])
     
 
   return (

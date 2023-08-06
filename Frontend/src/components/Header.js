@@ -2,16 +2,14 @@ import { useState} from "react";
 import { Link, NavLink } from 'react-router-dom'
 //images
 import logo from '../assets/logo.png';
-// import { useDispatch, useSelector } from "react-redux";
-// import { changeSelect } from "../app/slicers/navSlicer";
+import { useSelector } from "react-redux";
 
 
 const Header = () => {
     const [open, setOpen] = useState(false);
     
-    // const select = useSelector((state)=>state.navbar)
-   
-    // const dispatch = useDispatch();
+    const {select} = useSelector((state)=>state.navbar)
+    console.log(select);
 
     
     
@@ -45,11 +43,11 @@ const Header = () => {
                     </button>
                 </div>
                 <ul className="md:flex my-auto hidden ">
-                    <li className=""><NavLink to={'/'} className={`link active:text-white '}`}>Home</NavLink></li>
-                    <li className=""><NavLink to={'/staff'} className={`link active:text-white '}`}>Staff</NavLink></li>
-                    <li className=""><NavLink to={'/student'} className={`link active:text-white '}`}>Student</NavLink></li>
-                    <li className=""><NavLink to={'/contact'} className={`link active:text-white '}`}>Contact</NavLink></li>
-                    <li className=""><NavLink to={'/about'} className={`link active:text-white '}`}>About</NavLink></li>
+                    <li className=""><NavLink to={'/'} className={`link ${select===1 && 'text-white'} '}`}>Home</NavLink></li>
+                    <li className=""><NavLink to={'/staff'} className={`link ${select===2 && 'text-white'} '}`}>Staff</NavLink></li>
+                    <li className=""><NavLink to={'/student'} className={`link ${select===3 && 'text-white'} '}`}>Student</NavLink></li>
+                    <li className=""><NavLink to={'/contact'} className={`link ${select===4 && 'text-white'} '}`}>Contact</NavLink></li>
+                    <li className=""><NavLink to={'/about'} className={`link ${select===5 && 'text-white'} '}`}>About</NavLink></li>
                 </ul>
             </div>
             {open && <div className="md:hidden ">

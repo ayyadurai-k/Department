@@ -24,6 +24,7 @@ const { catchAsyncError } = require("../middlewares/catchAsyncError");
 //url : /staff/login(post)
 
 exports.staffLoginPost = catchAsyncError(async (req, res, next) => {
+  console.log("Staff login post called");
   const { username, password } = req.body;
   if (!username || !password) {
     return next(new ErrorHandler("All fields are must required !", 400));
@@ -42,11 +43,16 @@ exports.staffLoginPost = catchAsyncError(async (req, res, next) => {
   }
 
   //generate token
-  const token = await generateToken(staff._id, staffs.collection.name);
+  const token =  generateToken(staff._id, staffs.collection.name);
+
+  console.log();
 
   //store token using cookie
-  res.cookie("StaffJwtToken", token, { httpOnly: true });
-  res.cookie("collection", staffs.collection.name, { httpOnly: true });
+  res.cookie("StaffJwtToken", token, {
+    httpOnly: true, 
+    expires: new Date( Date.now() + Number(process.env.COOKIE_EXPIRES_TIME) * 24 * 60 * 60 * 1000
+    ),
+} );  res.cookie("collection", staffs.collection.name, { httpOnly: true });
 
   //send response
   res.status(200).json({

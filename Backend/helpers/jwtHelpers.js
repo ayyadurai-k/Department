@@ -1,14 +1,14 @@
 const jwt = require('jsonwebtoken');
 
-exports.generateToken=async(id,collection)=>{
+exports.generateToken=(id,collection)=>{
 
-    const token = await jwt.sign({
+    const token =  jwt.sign({
         id,
         collection
     },
     process.env.JWT_SECRET_KEY,
     {
-        expiresIn:"7d"
+        expiresIn:"7h"
     }
     )
     return token;

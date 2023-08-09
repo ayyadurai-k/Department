@@ -15,14 +15,15 @@ const Staff = () => {
 
     useEffect(() => {
         dispatch(changeSelect(2))
-        getUser(dispatch, '/staff/dashboard')
-        if (user.error) {
-        return navigate('/login')
-    }
+        getUser(dispatch,'/staff/dashboard')
+       
     },[dispatch]);
 
     
 
+    if (user.error) {
+        return navigate('/login')
+    }
 
     return (
         <>

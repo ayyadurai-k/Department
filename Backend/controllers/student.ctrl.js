@@ -63,11 +63,20 @@ exports.studentLoginPost = catchAsyncError(async (req, res, next) => {
    }
 
    //create jwt token using id and collection name
-   const token = await generateToken(student._id, students.collection.name);
+   const token = generateToken(student._id, students.collection.name);
 
    //store token using cookie
-  res.cookie("StudentJwtToken", token, { httpOnly: true });
-  res.cookie("collection", student.collection.name, { httpOnly: true });
+   res.cookie("StudentJwtToken", token, {
+      httpOnly: true, 
+      expires: new Date( Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
+      ),
+ } );
+ 
+   res.cookie("collection", student.collection.name, {
+      httpOnly: true, 
+      expires: new Date( Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
+      ),
+   });
 
 
    res.status(200).json({
@@ -115,7 +124,7 @@ exports.getStudentsAttendanceReport = async (req, res, next) => {
 
    let Present = 0, Absent = 0;
 
-   studentAttendanceReport.forEach(({present}) => {
+   studentAttendanceReport.forEach(({ present }) => {
       present ? Present++ : Absent++;
    })
 
@@ -125,7 +134,7 @@ exports.getStudentsAttendanceReport = async (req, res, next) => {
       data: {
          regno,
          present: Present,
-         absent : Absent
+         absent: Absent
       }
    });
 };

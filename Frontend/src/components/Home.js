@@ -71,20 +71,22 @@ const Home = () => {
                 <title>The Madura College</title>
             </Helmet>
             <main className='bg-yellow-600 mt-5 m-5 rounded-2xl  p-5 md:p-10 mb-10'>
-                <div className='grid md:grid-cols-2 gap-5'>
-                    <div className=' p-5 md:p-10 '>
+                <div className='grid md:grid-cols-2 '>
+                    <div className='p-2 md:p-10 '>
                         <div className=' w-full'>
                             <h1 className='text-2xl md:text-4xl font-bold text-center md:text-left w-full'>The Madura College</h1>
                             <p className='font-semibold text-lg md:text-xl text-center md:text-left'>Department Of IT & CS</p>
                         </div>
-                        <p className='mt-3 text-center md:text-left mx-auto md:mx-0 w-4/5 font-semibold text-gray-900 capitalize'>The Madura College established in 1856, is one of the oldest academic institutions in Madurai, India. It is an autonomous arts and science college affiliated to the Madurai Kamaraj University.</p>
+                        <p className='mt-1 text-center md:text-left mx-auto md:mx-0 w-4/5 font-semibold text-gray-900 capitalize'>
+                        The Department of Computer Science was established in 1987 and Information Technology was established in 2008-2009 with the vision of producing competent graduates who have a strong foundation to confront the challenges in the computer world with moral values.
+                        </p>
                         <div className='mt-8 ml-3 flex justify-center md:justify-start'>
-                            <Link className='font-bold m-2 bg-white px-3 py-2 rounded-xl'>Staff</Link>
-                            <Link className='font-bold m-2 bg-white px-3 py-2 rounded-xl'>Student</Link>
+                            <Link  to="/staff" className='font-bold m-2 bg-white px-3 py-2 rounded-xl'>Staff</Link>
+                            <Link  to="/student" className='font-bold m-2 bg-white px-3 py-2 rounded-xl'>Student</Link>
                         </div>
                     </div>
-                    <div className=' md:flex py-auto hidden'>
-                        <img src={college} alt='College' className='mb-5 min-w-[350px]   md:mt-10 lg:mt-0'></img>
+                    <div className=' md:block py-auto hidden'>
+                        <img src={college} alt='College' className='mb-5 w-full   md:mt-10 lg:mt-0'></img>
                     </div>
                 </div>
             </main>

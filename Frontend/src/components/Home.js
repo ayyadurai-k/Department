@@ -8,6 +8,7 @@ import dayorder from '../assets/dayorder.png';
 import { getQuote } from '../utils/quoteGenerator';
 import { changeSelect } from '../app/slicers/navSlicer';
 import { useDispatch } from 'react-redux';
+import { getDayOrder } from '../utils/dayOrder';
 
 const Home = () => {
 
@@ -20,10 +21,7 @@ const Home = () => {
         year : ''
     })
 
-    const [quote,setQuote]=useState({
-        quote :"Life isn’t about getting and having, it’s about giving and being.",
-        author :"Kevin Kruse"
-    });
+   const [quote,setQuote]=useState(getQuote())
     const dispatch =useDispatch();
 
     useEffect(() => {
@@ -59,7 +57,7 @@ const Home = () => {
      // if day order equal to 1
     const [dayOrder, setDayOrder] = useState(1);
     useEffect(() => {
-        setDayOrder(4); 
+        setDayOrder(getDayOrder()); 
         dispatch(changeSelect(1))
     },[dispatch])
 

@@ -3,6 +3,7 @@ const { studentLoginPost,getStudentDashboard, studentLogout, getStudentsAttendan
 const { staffLoginPost, getStaffDashboard ,staffLogout, getAttendancePage, postAttendanceData, selfAttendance, getOneClass, getStaffAttendanceReport, getOneClassAttendanceReport, getOneStudent, getStaffs} = require('../controllers/staff.ctrl');
 const { studentAuthCheck ,staffAuthCheck} = require('../middlewares/AuthCheck');
 const { hodCheck } = require('../middlewares/hodCheck');
+
 const route = express.Router();
 
 

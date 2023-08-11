@@ -1,14 +1,37 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import students from '../data/students.json'
-// import Loader from './Loader'
 import { getClass } from '../utils/class';
-
+import { useEffect, useState } from 'react';
+import { getAttendanceData } from '../API/attendanceAPI';
+import { useNavigate } from 'react-router-dom';
+import Loader from './Loader'
 const AttendanceDetails = () => {
-    const dept="CS",year=4;
+    const {dept,year,month}=useParams();
+
+    const [details,setDetails]=useState([])
+    const [loading,setLoading]=useState(false);
+    const [error,setError]=useState(null);
+
+    const navigate = useNavigate()
+    useEffect(()=>{
+        async function api(){
+            try{
+                setLoading(true)
+                const {data} = await getAttendanceData(dept,year,month);
+                setDetails(data.data)
+            }
+            catch(error){
+                setError(error.response.data.message);
+            }
+            finally{
+                setLoading(false);
+            }
+        }api()
+    },[])
     return (
         <>
-            {/* <Loader /> */}
-            <main className="bg-gray-300  w-full p-2 h-screen">
+            {loading && <Loader/>}
+            {!loading && !error&&<main className="bg-gray-300  w-full p-2 h-screen">
                 <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5">
                     <div className='flex justify-between'>
                         <h1 className="font-bold text-black text-2xl center">
@@ -25,20 +48,19 @@ const AttendanceDetails = () => {
                             <thead className="bg-blue-500 border-b-2 rounded border-gray-600 text-xl">
                                 <tr className="">
                                     <th className="p-3">RegNo</th>
-                                    <th className="p-3">Name</th>
                                     <th className="p-3">Present</th>
                                     <th className="p-3">Absent</th>
 
                                 </tr>
                             </thead>
                             <tbody className="text-center font-bold divide-y divide-gray-800">
-                                {students.map((student, index) => {
+                                {details.map((detail, index) => {
                                     const sNo = index + 1;
                                     return (
-                                        <tr className={`${sNo % 2 === 0 && 'bg-blue-300'} `} key={student.regno}>
-                                            <td className='p-2 '>{student.regno}</td>
-                                            <td className='p-2 '>{student.DOB}</td>
-                                            <td className='p-2 '>{student.gender}</td>
+                                        <tr className={`${sNo % 2 === 0 && 'bg-blue-300'} `} key={detail.regno}>
+                                            <td className='p-2 '>{detail.regno}</td>
+                                            <td className='p-2 '>{detail.present}</td>
+                                            <td className='p-2 '>{detail.absent}</td>
                                         </tr>
                                     )
                                 })}
@@ -73,14 +95,14 @@ const AttendanceDetails = () => {
 
                     </div>
                 </section>
-            </main>
-            {/* <main className='flex justify-center items-center w-full '>
+            </main>}
+            {!loading&&error&&<main className='flex justify-center items-center w-full '>
                 <section className='my-auto w-full'>
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>
                         <p className='bg-red-500 rounded-lg p-5 font-bold text-lg text-center my-3'>
-                            <div>No Data Found</div>
-                            <div>Please Make Correct Selection</div>
+                            <span>{error}</span>
+                            <span className='block'>Please Make Correct Selection</span>
                         </p>
                         
                         <div className='flex justify-center'>
@@ -88,7 +110,7 @@ const AttendanceDetails = () => {
                        </div>
                     </div>
                 </section>
-            </main>  */}
+            </main> }
         </>
     )
 }

@@ -9,7 +9,6 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     
     const {select} = useSelector((state)=>state.navbar)
-    console.log(select);
 
     
     

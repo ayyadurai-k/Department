@@ -33,7 +33,7 @@ route.post('/staff/self-attendance',staffAuthCheck,selfAttendance)
 route.get('/staff/class/:dept/:year', staffAuthCheck,getOneClass);
 
 //get one class attendance report
-route.get('/staff/students/details/:dept/:year/:selectedMonth', staffAuthCheck, getOneClassAttendanceReport);
+route.get('/staff/students/details/:dept/:year/:month', staffAuthCheck, getOneClassAttendanceReport);
 
 // get staff self attendance report
 route.get('/staff/self-attendance/report/:month', staffAuthCheck, getStaffAttendanceReport);

@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getStaffs } from '../API/staffAPI'
 import { useNavigate } from 'react-router-dom'
 import Loader from './Loader'
-import { useSelector } from 'react-redux'
 const StaffDetails = () => {
-  const { user } = useSelector((state) => state.user);
     const navigate = useNavigate();
     const [staffs, setStaffs] = useState([])
     const [loading, setLoading] = useState(true)

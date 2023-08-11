@@ -137,7 +137,7 @@ const Attendance = () => {
                         </p>
 
                         <div className='flex justify-center'>
-                            <button onClick={() => { navigate('/') }} className='font-bold text-md text-center text-gray-800'>Please Go Back </button>
+                            <button onClick={() => { navigate('/staff') }} className='font-bold text-md text-center text-gray-800'>Please Go Back </button>
                         </div>
                     </div>
                 </section>

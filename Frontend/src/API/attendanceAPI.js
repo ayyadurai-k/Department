@@ -1,23 +1,11 @@
 import axios from 'axios'
 
-const instance = axios.create({
-     
-})
 
-// const checkClassObject ={
-//     it1: '2023ITC',
-//     it2: '2022ITC',
-//     it3: '2021ITC',
-//     cs1: '2023CSC',
-//     cs2: '2022CSC',
-//     cs3: '2021CSC',
-// }
-
-// const checkClass=(dept,year,student)=>{
-    
-// }
 
 export const postAttendanceData =async(dept,year,absent)=>{
-    console.log(year);
-    return await instance.post(`/staff/attendance/${dept}/${year}`,absent)
+    return await axios.post(`/staff/attendance/${dept}/${year}`,absent)
+}
+
+export const getAttendanceData =async(dept,year,month)=>{
+    return await axios.get(`/staff/students/details/${dept}/${year}/${month}`)
 }

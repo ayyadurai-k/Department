@@ -126,7 +126,16 @@ const convertAttendance = (reports) => {
     }
   });
 
-  return result;
+ const results =  Object.keys(result).map((key,index)=>{
+      return {
+          regno : key,
+          present : result[key].present,
+          absent : result[key].absent
+      }
+  })
+
+
+  return results;
 };
 
 // start schedule

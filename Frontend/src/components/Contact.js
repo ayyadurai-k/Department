@@ -44,7 +44,7 @@ const Contact = () => {
                       />
                     </svg>
                     <span className="ml-2 font-bold">
-                      <Link to="callto:04522673354">(0452) 2673354</Link>
+                      <p>(0452) 2673354</p>
                     </span>
                   </label>
                   <label className="flex mt-2">

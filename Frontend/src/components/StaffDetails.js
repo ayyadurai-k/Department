@@ -94,8 +94,8 @@ const StaffDetails = () => {
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>
                         <p className='bg-red-500 rounded-lg p-5 font-bold text-lg text-center my-3'>
-                            <div>Authorization Error</div>
-                            <div>{error}</div>
+                            <span>Authorization Error</span>
+                            <span className='block'>{error}</span>
                         </p>
 
                         <div className='flex justify-center'>

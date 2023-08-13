@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import generateMonthArray from '../../utils/generateMonthArray'
 import useReport from '../../hooks/useReport';
-import MiniLoader from '../miniLoader';
+import MiniLoader from '../MiniLoader';
 const Report = () => {
 
     // for month options

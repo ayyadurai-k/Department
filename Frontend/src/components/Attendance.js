@@ -5,6 +5,7 @@ import { getClass } from "../utils/class";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getStudents } from "../API/studentAPI";
 import { postAttendanceData } from "../API/attendanceAPI";
+import MiniLoader from './MiniLoader'
 const Attendance = () => {
     //get department using params;
     const { dept, year } = useParams();
@@ -61,11 +62,11 @@ const Attendance = () => {
     const handleSubmit = async() => {
        try{
         setSuccessLoading(true);
-        const result= await postAttendanceData(dept,year,absent);
+        await postAttendanceData(dept,year,absent);
         setSuccess(true);
        }
        catch(error){
-            console.log(error);
+            setError(error.response.data.message)
        }
        finally{
         setSuccessLoading(false);
@@ -121,7 +122,10 @@ const Attendance = () => {
                         <p className="text-red-600 font-bold text-center my-5">Once Submitted Never Change Recheck Attendance !</p>
                         <div className="flex justify-center m-3 f">
 
-                            <button onClick={handleSubmit} className=" text-white hover:bg-blue-700   bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-2 font-bold rounded-lg">Submit</button>
+                            <button onClick={handleSubmit} className=" text-white hover:bg-blue-700   bg-gradient-to-r from-blue-600 to-violet-600 px-3 py-2 font-bold rounded-lg flex ">
+                                <span className="mr-2">Submit</span>
+                                {successLoading && <MiniLoader/>}
+                            </button>
 
                         </div>
                     </div>

@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom'
-import students from '../data/students.json'
 import { getClass } from '../utils/class';
 import { useEffect, useState } from 'react';
 import { getAttendanceData } from '../API/attendanceAPI';
@@ -27,12 +26,12 @@ const AttendanceDetails = () => {
                 setLoading(false);
             }
         }api()
-    },[])
+    },[dept,year,month])
     return (
         <>
             {loading && <Loader/>}
-            {!loading && !error&&<main className="bg-gray-300  w-full p-2 h-screen">
-                <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5">
+            {!loading && !error&&<main className="bg-gray-300  w-full p-2 h-full">
+                <section className="bg-white w-11/12  border border-black mx-auto rounded-xl p-5 mt-5 mb-16">
                     <div className='flex justify-between'>
                         <h1 className="font-bold text-black text-2xl center">
                             {
@@ -43,8 +42,8 @@ const AttendanceDetails = () => {
                             <label className="cursor-pointer text-white ">Back</label>
                         </Link>
                     </div>
-                    <div className='hidden md:block'>
-                        <table className="w-full mt-5 ">
+                    <div className='hidden md:block '>
+                        <table className="w-full mt-5  ">
                             <thead className="bg-blue-500 border-b-2 rounded border-gray-600 text-xl">
                                 <tr className="">
                                     <th className="p-3">RegNo</th>
@@ -71,18 +70,17 @@ const AttendanceDetails = () => {
                     </div>
                     <div className='md:hidden'>
                         {
-                            students.map((student) => {
+                            details.map((detail) => {
                                 return (
-                                    <div className='bg-blue-400  rounded-2xl shadow- mt-2' key={student.regno}>
+                                    <div className='bg-blue-400  rounded-2xl shadow- mt-2' key={detail.regno}>
                                         <div className='flex flex-col md:flex'>
                                             <div className='w-full md:w-1/4 py-3 flex bg-blue-500 rounded-t-2xl'>
-                                                <h1 className='m-auto  text-center font-bold text-lg'>{student.regno}</h1>
+                                                <h1 className='m-auto  text-center font-bold text-lg'>{detail.regno}</h1>
                                             </div>
                                             <div className='w-full md:w-3/4 flex p-5'>
                                                 <div className='my-auto '>
-                                                    <h1 className='font-bold text-xl'>{student.name}</h1>
-                                                    <h1 className='font-bold text-gray-700'><span>Present : </span>{student.DOB}</h1>
-                                                    <h1 className='font-bold text-gray-700'><span>Absent : </span>{student.gender}</h1>
+                                                    <h1 className='font-bold text-gray-700'><span>Present : </span>{detail.present}</h1>
+                                                    <h1 className='font-bold text-gray-700'><span>Absent : </span>{detail.absent}</h1>
                                                 </div>
                                             </div>
                                         </div>

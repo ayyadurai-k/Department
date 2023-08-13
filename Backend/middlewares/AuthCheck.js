@@ -41,7 +41,14 @@ exports.staffAuthCheck=async(req,res,next)=>{
     }
 
     //store userId to req
-    req.user=await staffs.findById(data.id);
+    const user=await staffs.findById(data.id);
+
+    //wrong mongodb id
+    if(!user){
+      return next(new ErrorHandler("Wrong DB Id is Not Allowed",403))
+    }
+    req.user=user
+
     //calling next Middleware in this "getStudentDashboard" in called
     next();
 }
@@ -80,8 +87,15 @@ exports.studentAuthCheck=async(req,res,next)=>{
   }
 
   //store userId to req
-  req.user=await students.findById(data.id);
+  const user=await students.findById(data.id);
+
+  //wrong mongodb id
+  if(!user){
+    return next(new ErrorHandler("Wrong DB Id is Not Allowed",403))
+  }
   
+  req.user=user
+
   //calling next Middleware in this "getStudentDashboard" in called
   next();
 }

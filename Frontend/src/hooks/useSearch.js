@@ -41,9 +41,7 @@ const useSearch = () => {
             setSearchResult(null);
         }
         finally{
-            setTimeout(() => {
-                setLoad(false)
-            },1000)
+            setLoad(false)
         }
     }
 

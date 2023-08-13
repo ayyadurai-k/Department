@@ -45,20 +45,20 @@ exports.staffLoginPost = catchAsyncError(async (req, res, next) => {
   //generate token
   const token =  generateToken(staff._id, staffs.collection.name);
 
-  console.log();
 
   //store token using cookie
   res.cookie("StaffJwtToken", token, {
     httpOnly: true, 
     expires: new Date( Date.now() + Number(process.env.COOKIE_EXPIRES_TIME) * 24 * 60 * 60 * 1000
     ),
-} );  res.cookie("collection", staffs.collection.name, { httpOnly: true });
+} );  
 
   //send response
   res.status(200).json({
     success: true,
     token: token
   });
+
 });
 
 // url : /staff/dashboard
@@ -110,7 +110,7 @@ exports.getAttendancePage = catchAsyncError(async (req, res, next) => {
   }
 
   // get student based on department and year
-  const studentsData = await students.find({ dept: dept.toUpperCase(), year }).select('regno');
+  const studentsData = await students.find({ dept: dept.toUpperCase(), year }).select('regno').sort({regno:1});
 
   //check exits or not
   if (!studentsData.length) {
@@ -251,7 +251,7 @@ exports.getOneClassAttendanceReport = catchAsyncError(async (req, res, next) => 
     year: year,
     month: month,
     currentYear: selectedYear,
-  })
+  }).sort({regno:1})
 
   if (!rawReports.length ) {
    return next(new ErrorHandler("No Data Found ", 400))

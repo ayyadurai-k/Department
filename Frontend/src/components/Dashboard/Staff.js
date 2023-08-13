@@ -19,6 +19,7 @@ const Staff = () => {
     },[]);
 
     if (user.error) {
+        console.log(user.error);
         return navigate('/login')
     }
 

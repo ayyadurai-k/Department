@@ -39,7 +39,7 @@ route.get('/staff/students/details/:dept/:year/:month', staffAuthCheck, getOneCl
 // get staff self attendance report
 route.get('/staff/self-attendance/report/:month', staffAuthCheck, getStaffAttendanceReport);
 
-//get student attendance report
+//get one student attendance report
 route.get('/student/attendance/report/:month',studentAuthCheck,getStudentsAttendanceReport);
 
 

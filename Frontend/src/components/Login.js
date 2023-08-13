@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelect } from '../app/slicers/selectSlicer';
 
@@ -11,7 +11,12 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const [eye, setEye] = useState(false);
+    const navSelect = useSelector((state)=>state.navbar.select)
 
+    useEffect(()=>{
+        console.log(navSelect);
+        dispatch(setSelect({ select:navSelect-1 }));
+    },[navSelect,dispatch])
     
     const select = useSelector((state) => state.select.value.select);
     

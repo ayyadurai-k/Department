@@ -4,7 +4,6 @@ import axios from 'axios';
 
 
 const logoutAPI = async (user) => {
-    console.log(user);
     if (user.position) {
         await axios.get('/staff/logout');
     }

@@ -96,8 +96,9 @@ const StaffContent = () => {
                     value={searchHook.input}
                   ></input>
                   <button
+                    disabled={searchHook.load}
                     onClick={searchHook.handleSubmit}
-                    className={`bg-white rounded ml-2 hover:cursor-pointer `}
+                    className={`bg-white rounded ml-2 hover:cursor-pointer ${searchHook.load && 'hover:cursor-not-allowed'} `}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

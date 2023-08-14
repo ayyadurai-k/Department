@@ -30,7 +30,7 @@ exports.studentLoginPost = catchAsyncError(async (req, res, next) => {
    }
 
    //create jwt token using id and collection name
-   const token = generateToken(student._id, students.collection.name);
+   const token = generateToken(student._id);
 
    //store token using cookie
    res.cookie("StudentJwtToken", token, {
@@ -39,25 +39,19 @@ exports.studentLoginPost = catchAsyncError(async (req, res, next) => {
       ),
  } );
  
-   res.cookie("collection", student.collection.name, {
-      httpOnly: true, 
-      expires: new Date( Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
-      ),
-   });
+   
 
 
    res.status(200).json({
       success: true,
       token
    });
-   //  return res.redirect('/student/dashboard')
 });
 
 // url: /student/dashboard
 exports.getStudentDashboard = async (req, res, next) => {
    //get student detail via req.userId
    const student = req.user;
-   console.log("called")
 
    res.status(200).json({
       success: true,

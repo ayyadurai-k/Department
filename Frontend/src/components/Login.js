@@ -14,7 +14,6 @@ const Login = () => {
     const navSelect = useSelector((state)=>state.navbar.select)
 
     useEffect(()=>{
-        console.log(navSelect);
         if(navSelect===2 || navSelect===3){
             dispatch(setSelect({ select:navSelect-1 }));
         }

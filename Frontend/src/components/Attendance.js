@@ -20,7 +20,6 @@ const Attendance = () => {
 
     useEffect(() => {
         if (!dept.toUpperCase() === "CS" || !dept.toUpperCase() === "IT" || !(Number(year) < 4 && Number(year) > 0)) {
-            console.log("called");
 
             return setError("No Matched Students Data...!")
         }

@@ -71,7 +71,6 @@ const giveAutomaticAttendance = async () => {
   if (currentDateAttendance.length == 0) {
     for await (let staffEmail of staffEmails) {
       await giveStaffAttendance(staffEmail, false);
-      console.log(staffEmail);
     }
   }
 

@@ -15,15 +15,14 @@ const Staff = () => {
 
     useEffect(() => {
         dispatch(changeSelect(2))
-        getUser(dispatch,'/staff/dashboard')       
-    },[]);
+        getUser(dispatch,'/staff/dashboard') 
+    },[dispatch]);
 
-    if (user.error) {
-        console.log(user.error);
-        return navigate('/login')
-    }
-
-   
+    useEffect(()=>{
+        if (user.error) {
+            return navigate('/login')
+        } 
+    },[user,navigate])
     return (
         <>
             <HelmetProvider>

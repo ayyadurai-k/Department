@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-exports.generateToken=(id,collection)=>{
+exports.generateToken=(id)=>{
 
     const token =  jwt.sign({
-        id,
-        collection
+        id
     },
     process.env.JWT_SECRET_KEY,
     {

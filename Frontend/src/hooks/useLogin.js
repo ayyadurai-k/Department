@@ -7,9 +7,6 @@ import {useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { setError } from '../app/slicers/errorSlicer';
 
-//auth
-import {setItem} from '../Auth/localStorage'
-
 const useLogin = () => {
 
     //initial input state
@@ -53,18 +50,10 @@ const useLogin = () => {
 
         try {
             setLoad(true)
-            const result = await loginUser(input, select);
-            console.log(result);
-            //check success or not
-            if (!result.success) {
-                console.log(result);
-                return dispatch(setError({custom:result.message}))
-            }
-            //clear error text
+            await loginUser(input, select);
             dispatch(setError({}))
+            setInput(initialInputState);
 
-            //store token in local storage
-            setItem(result.token);
 
             //navigate to  based on select value 
             if (select === 1) {
@@ -75,13 +64,13 @@ const useLogin = () => {
             }
 
         }
-        catch (e) {
-            console.log(e);
+        catch (error) {
+           //check success or not
+           dispatch(setError({custom:error.response.data.message}))
         }
         finally {
             setLoad(false);
         }
-        setInput(initialInputState);
     }
 
     return {input,error,load,handleChange,handleSubmit}

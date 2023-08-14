@@ -15,18 +15,13 @@ const Details = () => {
     const [loading, setLodaing] = useState(false);
 
     useEffect(() => {
-
-        if (!dept.toUpperCase() === "CS" || !dept.toUpperCase() === "IT" || !(Number(year) < 4 && Number(year) > 0)) {
-            return setError("No Matched Students Data...!")
-        }
-
-        //first check Input
+        
+        //first check Input for dept in cs and it and year 1 to 3
         const checkResult = checkInput(dept.toUpperCase(), year);
-
 
         // if error occurs update error state
         if (!checkResult) {
-            return setError(true);
+            return setError("No Matched Students Data...!");
         }
 
         async function api() {
@@ -38,7 +33,7 @@ const Details = () => {
                 setStudents(result.data.studentsData)
             }
             catch (error) {
-                setError(true);
+                setError(error.response.data.message);
             }
             finally {
                 setLodaing(false)
@@ -126,8 +121,8 @@ const Details = () => {
                     <div className='w-full lg:w-1/3 p-5 rounded-lg mx-auto mt-24'>
                         <h1 className='font-bold text-2xl text-center'>Issue</h1>
                         <p className='bg-red-500 rounded-lg p-5 font-bold text-lg text-center my-3'>
-
-                            {error}
+                            <span>{error}</span>
+                            <span className='block'>Please Make Correct Selection</span>
                         </p>
 
                         <div className='flex justify-center'>

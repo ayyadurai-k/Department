@@ -24,7 +24,6 @@ const { catchAsyncError } = require("../middlewares/catchAsyncError");
 //url : /staff/login(post)
 
 exports.staffLoginPost = catchAsyncError(async (req, res, next) => {
-  console.log("Staff login post called");
   const { username, password } = req.body;
   if (!username || !password) {
     return next(new ErrorHandler("All fields are must required !", 400));
@@ -43,7 +42,7 @@ exports.staffLoginPost = catchAsyncError(async (req, res, next) => {
   }
 
   //generate token
-  const token =  generateToken(staff._id, staffs.collection.name);
+  const token =  generateToken(staff._id);
 
 
   //store token using cookie
@@ -148,7 +147,6 @@ exports.postAttendanceData = catchAsyncError(async (req, res, next) => {
   //getting last studentAttendance updated date via studentAttendance database
   const updatedOrNot = await checkUpdateOrNot(dept, year)
 
-  console.log(updatedOrNot);
   if (updatedOrNot) {
     return next(new ErrorHandler("Today Attendance Is Already Uploaded", 408));
   }
@@ -217,7 +215,7 @@ exports.getOneClass = catchAsyncError(async (req, res, next) => {
   //check exits or not
   if (!dept || !year) {
     return next(
-      new ErrorHandler("Department and Year parameter is required", 404)
+      new ErrorHandler("Department and Year parameter is required", 400)
     );
   }
 
@@ -225,7 +223,7 @@ exports.getOneClass = catchAsyncError(async (req, res, next) => {
 
   //check exits or not
   if (!studentsData.length) {
-    return next(new ErrorHandler("No matched Student data", 400));
+    return next(new ErrorHandler("No matched Student Data...!", 400));
   }
 
   res.status(200).json({

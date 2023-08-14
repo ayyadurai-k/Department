@@ -7,59 +7,26 @@ const ErrorHandler = require("../utils/ErrorHandler");
 const studentAttendance =
    require("../models/attendance.mdl").studentAttendanceModel;
 
-// url: /newstudent
-exports.createNewStudent = catchAsyncError(async (req, res, next) => {
-   const newStudent = req.body;
-
-   //check data exists or not
-   if (!newStudent) {
-      return next(new ErrorHandler("Data is Must Required !", 404));
-   }
-   //get password from newStudent
-   const { password } = newStudent;
-
-   // check password exists or not
-   if (!password) {
-      return next(new ErrorHandler("Password is Must Required !", 404));
-   }
-
-   // hash password
-   const hashedPassword = await hashPassword(password);
-
-   //Store hashed password
-   newStudent.password = hashedPassword;
-
-   //insert data to database
-   const insertResult = await students.create(newStudent);
-
-   res.status(200).json({
-      success: true,
-      message: "Student is Inserted",
-      result: insertResult,
-   });
-});
-
-
 
 //for posting student username and password
 //url: student/login(post)
 exports.studentLoginPost = catchAsyncError(async (req, res, next) => {
    const { username, password } = req.body;
    if (!username || !password) {
-      return next(new ErrorHandler("All fields are must required", 403));
+      return next(new ErrorHandler("All fields are must required", 400));
    }
 
    //find student from database
    const student = await students.findOne({ email: username });
 
    if (!student) {
-      return next(new ErrorHandler("Invalid Username or Password ", 403));
+      return next(new ErrorHandler("Invalid Username or Password ", 400));
    }
 
    //check password correct or not
    //using hash compare
-   if (!(await comparePassword(password, student.password))) {
-      return next(new ErrorHandler("Check username and password !", 404));
+   if (!(await comparePassword(password, student.password))) {          
+      return next(new ErrorHandler("Check username and password !", 400));
    }
 
    //create jwt token using id and collection name

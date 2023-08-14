@@ -45,7 +45,7 @@ exports.staffAuthCheck=async(req,res,next)=>{
 
     //wrong mongodb id
     if(!user){
-      return next(new ErrorHandler("Wrong DB Id is Not Allowed",403))
+      return next(new ErrorHandler("Wrong DB Id is Not Allowed",400))
     }
     req.user=user
 
@@ -70,7 +70,7 @@ exports.studentAuthCheck=async(req,res,next)=>{
   //verify token if correct data is returned
   jwt.verify(jwtToken, process.env.JWT_SECRET_KEY,(err,decoded)=>{
         if(err){
-          return next(new ErrorHandler("Wrong or Exxpired Token Is Not Allowed Token is Not Allowed please login again",403))
+          return next(new ErrorHandler("Wrong or Exxpired Token Is Not Allowed Token is Not Allowed please login again",400))
         }
         else {
            data = decoded;
@@ -83,7 +83,7 @@ exports.studentAuthCheck=async(req,res,next)=>{
      
   //check token correct or wrong
   if(!data){
-      return next(new ErrorHandler("Wrong Token is Not Allowed",403))
+      return next(new ErrorHandler("Wrong Token is Not Allowed",400))
   }
 
   //store userId to req
@@ -91,7 +91,7 @@ exports.studentAuthCheck=async(req,res,next)=>{
 
   //wrong mongodb id
   if(!user){
-    return next(new ErrorHandler("Wrong DB Id is Not Allowed",403))
+    return next(new ErrorHandler("Wrong DB Id is Not Allowed",400))
   }
   
   req.user=user

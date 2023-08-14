@@ -98,7 +98,7 @@ exports.getAttendancePage = catchAsyncError(async (req, res, next) => {
   //check exits or not
   if (!dept || !year) {
     return next(
-      new ErrorHandler("Department and Year parameter is required", 404)
+      new ErrorHandler("Department and Year parameter is required", 400)
     );
   }
 
@@ -106,7 +106,7 @@ exports.getAttendancePage = catchAsyncError(async (req, res, next) => {
   const updatedOrNot = await checkUpdateOrNot(dept, year)
 
   if (updatedOrNot) {
-    return next(new ErrorHandler("Today Attendance Is Already Uploaded", 408));
+    return next(new ErrorHandler("Today Attendance Is Already Uploaded", 400));
   }
 
   // get student based on department and year
@@ -141,7 +141,7 @@ exports.postAttendanceData = catchAsyncError(async (req, res, next) => {
   //check exits or not
   if (!dept || !year) {
     return next(
-      new ErrorHandler("Department and Year parameter is required", 404)
+      new ErrorHandler("Department and Year parameter is required", 400)
     );
   }
 
@@ -198,13 +198,13 @@ exports.selfAttendance = catchAsyncError(async (req, res, next) => {
   });
 
   if (updatedOrNot) {
-    return next(new ErrorHandler("Today Attendance Is Already Uploaded", 408));
+    return next(new ErrorHandler("Today Attendance Is Already Uploaded", 400));
   }
 
   //give attendance
   await giveStaffAttendance(email, true);
 
-  res.status(200).json({
+  res.status(201).json({
     success: true,
     currentPage: "Staff Dashboard",
   });
@@ -225,7 +225,7 @@ exports.getOneClass = catchAsyncError(async (req, res, next) => {
 
   //check exits or not
   if (!studentsData.length) {
-    return next(new ErrorHandler("No matched Student data", 404));
+    return next(new ErrorHandler("No matched Student data", 400));
   }
 
   res.status(200).json({

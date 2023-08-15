@@ -11,18 +11,21 @@ const Staff = () => {
 
     const  user  = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(changeSelect(2))
         getUser(dispatch,'/staff/dashboard') 
     },[dispatch]);
 
-    useEffect(()=>{
-        if (user.error) {
-            return navigate('/login')
-        } 
-    },[user,navigate])
+
+    if (user.error) {
+       navigate('/login')
+    } 
+
+    
+
+   
     return (
         <>
             <HelmetProvider>

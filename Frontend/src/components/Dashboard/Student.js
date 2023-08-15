@@ -18,11 +18,10 @@ const Student = () => {
     getUser(dispatch, '/student/dashboard')
   },[dispatch])
   
-  useEffect(()=>{
-    if (user.error) {
-      return navigate('/login')
-    } 
-  },[user,navigate])
+  if (user.error) {
+    navigate('/login')
+  } 
+
   
   return (
     <>

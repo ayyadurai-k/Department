@@ -4,7 +4,7 @@ import axios from 'axios';
 export const getUser = async(dispatch,url) => {
     try {
         dispatch(userRequest());
-        const { data } = await axios.get(url, { withCredentials: true })
+        const { data } = await axios.get(url)
         dispatch(userSuccess(data)); 
     }
     catch (error) {

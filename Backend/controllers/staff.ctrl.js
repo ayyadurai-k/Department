@@ -186,13 +186,11 @@ exports.selfAttendance = catchAsyncError(async (req, res, next) => {
   //get email
   const email = req.user.email;
 
-  //get current date
-  const currentDate = getDate();
 
   // check if attendance is already uploaded or not
   const updatedOrNot = await staffAttendance.findOne({
-    email: email,
-    updatedAt: currentDate,
+    email,
+    updatedAt: getDate()
   });
 
   if (updatedOrNot) {

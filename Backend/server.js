@@ -19,29 +19,22 @@ connectDatabase();
 
 const app = express(); // create app
 
-const corsOptions = {
-    origin: [
-      'http://localhost:3000',
-      'http://127.0.0.1',
-    'http://example.com',
-      'http://192.168.177.17:3000'
-      // your origins here
-    ],
-    credentials: true,
-    //exposedHeaders: ['set-cookie'],
-  };
 
-app.use(cors(corsOptions));
+
+app.use(cors());
 app.use(bodyParser.urlencoded({extended:false})) //get data from url
 app.use(cookieParser())
 app.use(express.json());// get and put json files
 
 app.use(route);
-app.use((req,res)=>{
-    res.json({
-       message : "404 Page Not Found"
+
+if(process.env.APP_ENV==="production"){
+    app.use(express.static(path.join(__dirname,'..','Frontend','build')));
+    app.get("*",(req,res)=>{
+        res.sendFile(path.resolve(__dirname,'..','Frontend','build'));
     })
-})
+}
+
 //for handling
 app.use(error)
 
